@@ -1,5 +1,8 @@
 # encoding: utf-8
 
+ssh_user              = "ubuntu@yet" # for rsync deployment
+remote_root           = "/var/www/yet/" # for rsync deployment
+
 require 'stringex'
 desc "Create a new post"
 task :new_post, :title do |t, args|
@@ -21,4 +24,12 @@ task :new_post, :title do |t, args|
     post.puts 'published: false'
     post.puts "---\n\n"
   end
+end
+
+desc "builds and deploy"
+task :deploy do
+  puts "*** compile yet ***"
+  system "nanoc compile"
+  puts "*** deploy yet ***"
+  system "rsync -avz --delete output/* #{ssh_user}:#{remote_root}"
 end

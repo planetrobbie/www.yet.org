@@ -158,7 +158,9 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 * exclude host from proxying with:
 		gsettings set org.gnome.system.proxy ignore-hosts "['localhost', '127.0.0.0/8', '10.0.0.0/8', '192.168.0.0/16', '172.16.0.0/12' , '*.localdomain.com' ]"
 		gconftool -R /system/http_proxy [to remove proxying which interfere with Sublime Text Package Control]
-
+* *iftop*, *vnstat* and *htop* installed for network & process monitoring
+* *tree* installed for nice tree dir colored output.
+* *dnstools* installed to debug DNS issues
 
 ### AltGr inversion trick ##
 1. Linux VM need to be configured with Mac Profile Keyboard in settings 
