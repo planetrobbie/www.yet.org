@@ -1,9 +1,12 @@
---- 
-title: YET
-description: Yet Emerging Technologies, 3rd iteration from Sébastien Braun, a French Systems Engineer, where he tries to share informations and tips and tricks about technologies.
+---
 ---
 %section{:id => 'content', :class => 'blog'}
-	- blog_articles.each do |item|
+	.tagRibon
+		.tagBox
+			.ar
+			.co
+				%span(class="name")= tag
+	- items_with_tag(tag, articles).each do |item|
 		.blog-entry
 			%aside
 				.date

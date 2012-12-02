@@ -5,8 +5,15 @@
 				.date
 					.month= get_post_month(item)
 					.day= get_post_day(item)
+			.tagRibon
+				- item[:tags].each do |tag|
+					.tagBox
+						.ar
+						.co
+							%a(href="/tags/#{tag}/")
+								%span(class="name")= tag
 			%article
-				%h2= item[:title]
+				%h2(class='article-title')= item[:title]
 				= find_and_preserve do
 					= yield
 			.disqus

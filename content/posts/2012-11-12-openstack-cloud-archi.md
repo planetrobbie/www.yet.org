@@ -2,6 +2,8 @@
 title: "OpenStack Cloud Architecture"
 created_at: 2012-11-12 12:34:00 +0000
 kind: article
+published: true
+tags: ['openstack']
 ---
 
 Cheatsheet created from [Cybera](http://www.cybera.ca/tech-radar/lets-build-cloud-%E2%80%94-introduction?goback=%2Egde_3239106_member_182556535) blog.

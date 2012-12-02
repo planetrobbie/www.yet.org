@@ -3,6 +3,7 @@ GEM
   specs:
     adsf (1.1.1)
       rack (>= 1.0.0)
+    coderay (1.0.8)
     colored (1.2)
     commonjs (0.2.6)
     cri (2.3.0)
@@ -13,6 +14,7 @@ GEM
     less (2.2.2)
       commonjs (~> 0.2.6)
     libv8 (3.3.10.4)
+    mime-types (1.19)
     nanoc (3.4.2)
       cri (~> 2.2)
     nokogiri (1.5.5)
@@ -33,10 +35,12 @@ PLATFORMS
 
 DEPENDENCIES
   adsf
+  coderay
   fssm
   haml
   kramdown
   less
+  mime-types
   nanoc
   nokogiri
   pygments.rb

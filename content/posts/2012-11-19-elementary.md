@@ -2,9 +2,10 @@
 title: "Elementary"
 created_at: 2012-11-19 12:35:00 +0000
 kind: article
+tags: ['linux', 'desktop interface', 'gnome']
 ---
 
-*[Elementary](http://nanoc.stoneship.org/)* is a new initiative to create an Operating Sytem with an emphasis on elegance.
+*[Elementary](http://elementaryos.org/)* is a new initiative to create an Operating Sytem with an emphasis on elegance.
 
 <!-- more -->
 

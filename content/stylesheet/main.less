@@ -23,6 +23,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Brawler', serif;
 }
 
+/* Page & Nav
+================================================== */
+
 #page {
   background: #fff url('/images/layout/bg-site-left.png') repeat-y;
   height: 100%;
@@ -83,6 +86,9 @@ h1, h2, h3, h4, h5, h6 {
         &.yet a {
           border-color: #333333;}
 
+        &.tags a {
+          border-color: #34b9dc;}
+
         &.archives a {
           border-color: #2A82B0;}
 
@@ -94,6 +100,7 @@ h1, h2, h3, h4, h5, h6 {
           margin-right: 120px;}
       
         &.active.yet a {background: #333333; color: white;}
+        &.active.tags a {background: #34b9dc; color: white;}
         &.active.archives a {background: #2A82B0; color: white;}
         &.active.about a {background: #F90; color: white;}
         &.active.contact a {background: #693; color: white;}
@@ -131,13 +138,117 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Tags
+================================================== */
+
+#tagList {
+  margin-bottom: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#tagList li {
+  width:155px;
+  line-height:20px;
+  position:relative;
+  margin-bottom:0;
+  font-size:11px
+}
+
+.tagRibon {
+  float: right;
+ }
+
+.tagBox {
+  margin: 0 5px 5px 15px;
+  float: left;
+  position: relative;
+  background: #FDFDFD;
+  color: #333;
+  border-top: 1px solid #E9E9E9;
+  border-bottom: 1px solid lightGrey;
+  border-right: 1px solid #D6D6D6;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+
+  * {
+    float: left;
+  }
+  .name {
+    line-height: 17px;
+    padding: 0 6px 0 4px;
+  }
+
+  .ar {
+    margin-left: -15px;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    width: 15px;
+    height: 21px;
+    background: url('/images/layout/sprite.png');
+  }
+
+  .co {
+    border-top: 1px solid #FDFDFD;
+    border-bottom: 1px solid #F8F9F9;
+    border-right: 1px solid #F9FAFA;
+    -webkit-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+
+    a {
+      color: #333;
+    }
+
+    a :hover {
+      color: #CE4F00;
+    }
+  }
+
+  .d {
+    height: 18px;
+    margin-top: -1px;
+    width: 0;
+    border-left: 1px solid #D6D6D6;
+  }
+
+  .count {
+    line-height: 17px;
+    padding: 0 6px;
+  }
+}
+
+/* #Images
+================================================== */
 .post-image {
   width: 800px;
 }
 
+figure {
+  text-align: center;
+  display: table;
+  max-width: 30%; /* demo; set some amount (px or %) if you can */
+  margin: 10px auto; /* not needed unless you want centered */
+}
+
+caption {
+  padding-left: 20px;
+}
+
+/* #Titles
+================================================== */
 .indented-title {
   padding-left: 85px;
 }
+
+.page-title {
+  font-weight: bold;
+}
+
+/* #Blog
+================================================== */
 
 .blog {
 
@@ -183,6 +294,17 @@ h1, h2, h3, h4, h5, h6 {
 
       .read-more {
         padding: 0 20px 20px 20px;
+        a, a:visited {
+          color: #444;
+        }
+        a :hover {
+          color: #CE4F00;
+        }
+      }
+
+      .article-title {
+        margin-top: 30px;
+        font-weight: bold;
       }
 
       h2 a {
@@ -241,32 +363,37 @@ h1, h2, h3, h4, h5, h6 {
       }
 
       pre {
-        background: #f8f8f8;
-        margin-bottom: 20px;
+        font-family: monospace;
+        margin-right: 20px;
         margin-left: 20px;
-        padding: 6px 12px;
-        // border-top: 2px dashed #eaeaea;
-        // border-bottom: 2px dashed #eaeaea;
-        // border-left: 2px dashed #eaeaea;
-        border: 1px solid #eaeaea;
-        border-right: none;
-        border-radius: 3px;
+        margin-bottom: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #cccccc;
         font-size: 13px;
-        color: #222;
-        overflow-x: auto;
-        // margin-bottom: 20px;
-        // padding: 6px 20px;
-        // border-top: 2px dashed #eaeaea;
-        // border-bottom: 2px dashed #eaeaea;
-        // overflow-x: auto;
+        line-height: 19px;
+        overflow: auto;
+        padding: 6px 12px;
+        border-radius: 3px;
       }
 
-      code {
-        font-family: Monaco, ProFont, "Bitstream Vera Sans Mono", "American Typewriter", "Andale Mono", monospace;
+      p code, tt {
+        font-family: monospace;
+        margin: 0 2px;
+        padding: 2px 5px;
+        white-space: nowrap;
+        border: 1px solid #CCC;
+        background-color: #F8F8F8;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        font-size: 12px;
       }
     }
   }
 }
+
+/* #Comments
+================================================== */
 
 .disqus {
   border-top: 1px solid #eee;
@@ -282,8 +409,8 @@ h1, h2, h3, h4, h5, h6 {
    margin-right: 20px;
 }
 
-// work
-//
+/* #Work                        NOT CURRENTLY USED
+================================================== */
 
 .work {
 
@@ -619,7 +746,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* IE stuff */
+/* IE Stuff
+================================================== */
 
 .no-boxshadow .work .work-item {
   border: 1px solid #ccc;
@@ -641,7 +769,9 @@ h1, h2, h3, h4, h5, h6 {
     
 }
 
-/* All Mobile Sizes (devices and browser) */
+/* All Mobile Sizes (devices and browser)
+================================================== */
+
 @media only screen and (max-width: 767px) {
   
   h1 { font-size: 46px; line-height: 50px; margin-bottom: 14px;}

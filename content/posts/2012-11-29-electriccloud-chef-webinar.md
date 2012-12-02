@@ -3,7 +3,7 @@ title: "Electric Cloud and Opscode Chef: The PB&J of DevOps Webminar"
 created_at: 2012-11-29 20:01:00 +0100
 kind: article
 published: true
-tags: orchestration, automation, chef, devops, webinar
+tags: ['automation', 'chef', 'devops', 'webinar']
 ---
 
 Today's enterprises are adopting methodologies like *DevOps* and *Continuous Delivery* to rapidly deliver applications to customers. Continuously building, testing and releasing applications improves the quality of the applications by providing fast user feedback to development teams; rapid release cycles also ensure tighter collaboration between Dev and Ops teams.

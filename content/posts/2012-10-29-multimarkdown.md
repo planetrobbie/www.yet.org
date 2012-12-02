@@ -2,6 +2,8 @@
 title: "MultiMarkdown tips & tricks"
 created_at: 2012-10-29 15:52:00 +0000
 kind: article
+published: true
+tags: ['cheatsheet', 'markup']
 ---
 
 [MMD](http://fletcherpenney.net/multimarkdown/) is an extension of a well known markup language extending Markdown.

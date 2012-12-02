@@ -11,6 +11,7 @@ module NavHelper
 		# nav rules
 		if 
         (path == '/' and (ident == '/')) or
+        (path == '/tags' and ident.start_with? '/tags') or
 				(path == '/work' and (ident.start_with? '/portfolio' or ident.start_with? '/work')) or
         (path == '/archives' and ident.start_with? '/archives') or
 				(path == '/about' and ident.start_with? '/about') or
@@ -58,7 +59,7 @@ module PostHelper
   	content = post.compiled_content
   	if content =~ /\s<!-- more -->\s/
   		content = content.partition('<!-- more -->').first +
-  		"<div class='read-more'><a href='#{post.path}'>Continue reading &rsaquo;</a></div>"
+  		"<div class='read-more'><a href='#{post.path}'>read &rsaquo;</a></div>"
   	end
   	return content	
   end
@@ -66,3 +67,20 @@ module PostHelper
 end
 
 include PostHelper
+
+# Creates in-memory tag pages from partial: layouts/_tag_page.haml
+def create_tag_pages
+  tag_set(items).each do |tag|
+    items << Nanoc3::Item.new(
+      "= render('_tag_page', :tag => '#{tag}')",           # use locals to pass data
+      { :title => "Category: #{tag}", :is_hidden => true}, # do not include in sitemap.xml
+      "/tags/#{tag}/",                                     # identifier
+      :binary => false
+    )
+  end
+end
+
+# Copy static assets outside of content instead of having nanoc3 process them.
+def copy_static
+  FileUtils.cp_r 'static/.', 'output/' 
+end

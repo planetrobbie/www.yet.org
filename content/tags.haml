@@ -1,0 +1,22 @@
+---
+title: All Tags
+is_hidden: true
+---
+
+%section{:id => 'content', :class => 'panel'}
+	%h2(class="page-title") Tags
+	%p Listed are the set of tag links related to articles in this site. The number of articles related to a tag 	succeeds the tag.
+	
+	- tags = count_tags()
+	%ul(id="tagList")
+		- tags.sort_by{|k,v| k}.each do |tag_count|
+			- tag = tag_count[0]
+			- count = tag_count[1]
+			%li
+				.tagBox
+					.ar
+					.co
+						%a(href="/tags/#{tag}/")
+							%span(class="name")= tag
+							.d
+							%span(class="count")= "#{count}"

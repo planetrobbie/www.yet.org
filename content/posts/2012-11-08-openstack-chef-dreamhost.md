@@ -3,7 +3,7 @@ title: "Automating OpenStack with Private Chef at DreamHost"
 created_at: 2012-11-08 19:01:00 +0100
 kind: article
 published: true
-tags: openstack, chef, cheatsheet, devops
+tags: ['devops', 'openstack', 'chef', 'automation', 'webinar']
 ---
 
 Notes following up a webinar with *Matt Ray* from *[Opscode](http://www.opscode.com/)* and *Carl Perry*, Cloud Architect at [Dreamhost](http://www.dreamhost.com/).

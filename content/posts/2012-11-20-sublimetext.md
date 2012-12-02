@@ -3,6 +3,7 @@ title: "Sublime Text 2"
 created_at: 2012-11-22 14:38:41 +0100
 kind: article
 published: true
+tags: ['cheatsheet', 'tools']
 ---
 
 *[Sublime Text 2](https://www.sublimetext.com/)* is one of the best editor for text, code, markup and prose which is available for $59 on OSX, Windows and Linux.  
