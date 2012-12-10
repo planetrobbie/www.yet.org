@@ -151,6 +151,7 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 *Elementary* is great, but let's make it even better with the following customization
 
 * *ZSH* installed, alias rake="noglob rake" added, globbing interfere with [] in Rake commands
+* *Oh My Zsh* auto-installed from GitHub shell script, see YET [article](/2012/12/oh-my-zsh/)
 * *Sublime Text 2* [installed](http://www.sublimetext.com/2) with Twiligh color scheme.
 * *VMware Tools* for Ubuntu 12.04 see [installation Note](http://partnerweb.vmware.com/GOSIG/Ubuntu_12_04.html).
 * *RVM* [installed](https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm) to install & manage Gems (nanoc, adsf, fssm, ..) & Ruby 1.9.3 
@@ -162,6 +163,8 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 * *iftop*, *vnstat* and *htop* installed for network & process monitoring
 * *tree* installed for nice tree dir colored output.
 * *dnstools* installed to debug DNS issues
+* *dropbox* installed from deb provided on their site/
+* *dconf-tools* to configure Pantheon Terminal colors using `dconf-editor` but still a work in progress, waiting for future release of Luna. Currently using Gnome Terminal instead to benefit from Solarized Dark palette. using customization below.
 
 ### AltGr inversion trick ##
 1. Linux VM need to be configured with Mac Profile Keyboard in settings 
@@ -201,6 +204,29 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 	>MimeType=text/plain;text/x-web-markdown;  
 	>StartupNotify=true  
 	>Terminal=false  
+
+### Solarized colors
+
+#### Dircolors
+
+To install Solarized color theme for Gnome Terminal:
+
+	wget --no-check-certificate https://github.com/seebi/solarized/raw/989a67d68e1a35d130d4afe6299b5f1c0d5c9122/ls-colorssolarized/dircolors
+	mv dircolors .dircolors
+	eval `dircolors ~/.dircolors`
+
+To make it persistent you can add the above line to your `~/.zshrc`
+
+#### Gnome Terminal
+
+To setup Solarized for GNOME Terminal:
+
+	git clone https://github.com/sigurdga/gnome-terminal-colors-solarized.git
+	cd gnome-terminal-colors-solarized
+	
+	And now you can set it to light or dark using the following commands:
+	./set_dark.sh
+	./set_light.sh
 
 ## Conclusion
 

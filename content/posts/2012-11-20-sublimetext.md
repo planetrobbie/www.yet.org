@@ -86,9 +86,16 @@ This package offers a great way to manage your tasks as plain text files.
 |*@feature*|Tags|
 |*- - + tab*|- - - ✄ - -|
 |*Crtl + Shit + up/down*|Re-order tasks|
-|*Crtl + r*|List of project|
-|||
-|||
+|*Crtl + r*|List of project| 
+
+If you use [*DropBox*](https://www.dropbox.com) and [*TaskPaper*](http://www.hogbaysoftware.com/products/taskpaper) for iOS, you'll be able to sync up your task to all your devices using the following *PlainTask* Configuration update :
+
+	   "open_tasks_bullet": "-",
+	   "done_tasks_bullet": "-",
+	   "date_format": "(%Y-%m-%d)",
+	   "translate_tabs_to_spaces": false,
+
+Following [Patch](https://github.com/aziz/PlainTasks/pull/25/files) applied, for full TaskPaper compatibility.
 
 ## Customization ##
 
