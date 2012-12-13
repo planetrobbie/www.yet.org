@@ -15,6 +15,7 @@ gem 'rainpress'
 gem 'therubyracer'
 gem 'rpeg-multimarkdown'
 gem 'mime-types'
+gem 'rake'
 
 
 #gem 'systemu'

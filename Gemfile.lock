@@ -24,6 +24,7 @@ GEM
       yajl-ruby (~> 1.1.0)
     rack (1.4.1)
     rainpress (1.0)
+    rake (10.0.2)
     rpeg-multimarkdown (0.1.1)
     stringex (1.4.0)
     therubyracer (0.10.2)
@@ -45,6 +46,7 @@ DEPENDENCIES
   nokogiri
   pygments.rb
   rainpress
+  rake
   rpeg-multimarkdown
   stringex
   therubyracer

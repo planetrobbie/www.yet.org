@@ -13,40 +13,54 @@ This cheatsheet is based on the [Tuts+ online training](https://tutsplus.com/cou
 
 ## Killer features ##
 
-* Command Palette *Crtl + Shift + P*
-* Multiple Cursors *Crtl + D*
+* `Crtl + Shift + p` Command Palette to limit mouse interaction
+* `Crtl + D` Multiple Cursors
 * Vintage Mode (Vim emulation).
 * Lightning fast.
 * Become the cool kids code editor, massive documentation.
-* Command palet to limit mouse interaction.
 * Plugin community incredibility vibrant, package control allow you to install them in seconds.
 
 ## Howto
 
 ### Shortcuts
 
-|Multiple Selection/Cursors||
-|:-:|:-:|
-|*Right Click + Shift*|column selection, use crtl/alt to add/remove from selection|
-|*Crtl + D*|add the next occurrence of the current word to the selection|
-|*Crtl +  shift + L*|Select a block of **lines**, and then split it into many selections, one per line|
-|*Alt + F3*|select all occurence of the current word|
-|***Most used***||
-|*Crtl + Shift + P*|Command Palette|
-|*Crtl + P*|file palet|
-|*Crtl + K + Crtl B*|toggle Sidebar on/off|
-|*Crtl + g*|goto line|
-|*Crtl + Shift + up/down*|move line up/down|
-|*Crtl +/-*|zoom in/out|
-|***Bookmarks***||
-|*Crtl + F2*|toggle|
-|*Crtl + shift + F2*|clear all|
-|*F2*|next|
-|*shift + F2*|previous|
+|**Most used**||
+|:-|:-|
+|`Crtl + p`|File palet|
+|`Crtl + Shift + p`|Command Palette|
+|`Crtl + k + Crtl b`|toggle Sidebar on/off|
+|`Crtl + g`|goto line|
+|`Crtl + Shift + Up/Down`|move line up/down|
+|`Crtl + [` or `Crtl + ]`|ident back and forth|
+|`Crtl +/-`|zoom in/out|
+|**Multiple Selection / Cursors**||
+|`Right Click + Shift`|column selection, use Crtl/Alt to add/remove from selection|
+|`Crtl + D`|add the next occurrence of the current word to the selection|
+|`Crtl +  Shift + L`|Select a block of lines, and then split it into many selections, one per line|
+|`Alt + F3`|select all occurence of the current word|
+|**Bookmarks**||
+|`Crtl + F2`|toggle|
+|`Crtl + Shift + F2`|clear all|
+|`F2`|next|
+|`shift + F2`|previous|
 |***Others***||
-|*Crtl + I*|Incremental search|
-|*Crtl + l*|select line|
+|`Crtl + l`|Select line|
+|`Crtl + Shift + i`|Incremental search|
+|`Crtl + Shift + k`|Kill line|
+|`Crtl + Return`|Return like if you were at end of line|
+|`Crtl + /`|Comment line|
 
+### Rails tips & tricks
+
+Install [*ERB Insert and Toggle Commands*](http://github.com/eddorre/SublimeERB) using *Package Control*, it gives you easy access to ERb tags, you just need to add the following to your user key bindings after installation to cycle thru Erb Tags with a simple key press:
+
+	[
+	    { "keys": ["ctrl+="], "command": "erb" }
+	]
+
+Install [*RubyTest*](https://github.com/maltize/sublime-text-2-ruby-tests) to run your Ruby tests from within *Sublime Text 2* just by typing `ctrl+shift+t.`
+
+See [*Michael Hartl*](http://ruby.railstutorial.org/) docs [on *GitHub*](https://github.com/mhartl/rails_tutorial_sublime_text) for more information.
 
 ### Package Control ##
 
@@ -105,7 +119,8 @@ Following [Patch](https://github.com/aziz/PlainTasks/pull/25/files) applied, for
 * *Sunburst* : big brown line for Headings
 * *Monokai* : Default one but not enough colorized details for MMD
 
-Note : Solarized Dark and Light are the most popular ones following scientist studies that consider the best lighting for the night and the one the day.                      
+Note : Solarized Dark and Light are the most popular ones following scientist studies that consider the best lighting for the night and the one the day.
+                      
 ## Links ##
 
 * [Official site](https://www.sublimetext.com/)
