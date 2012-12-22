@@ -160,11 +160,14 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 * exclude host from proxying with:
 		gsettings set org.gnome.system.proxy ignore-hosts "['localhost', '127.0.0.0/8', '10.0.0.0/8', '192.168.0.0/16', '172.16.0.0/12' , '*.localdomain.com' ]"
 		gconftool -R /system/http_proxy [to remove proxying which interfere with Sublime Text Package Control]
-* *iftop*, *vnstat* and *htop* installed for network & process monitoring
+* *iftop*, *vnstat*, *htop*, *slurm* installed for network & process monitoring
 * *tree* installed for nice tree dir colored output.
 * *dnstools* installed to debug DNS issues
 * *dropbox* installed from deb provided on their site/
 * *dconf-tools* to configure Pantheon Terminal colors using `dconf-editor` but still a work in progress, waiting for future release of Luna. Currently using Gnome Terminal instead to benefit from Solarized Dark palette. using customization below.
+* sudo apt-get install python-setuptools; easy_install Pygments; easy_install sphinx; export LC_ALL=en_US.UTF; export LANG=en_US.UTF-8; make html; make epub
+* sudo apt-get install sshfs; usermod -a -G fuser brauns; sshfs user@<ip>:/remote/path/ /mnt/local/path
+* pidgin installed (IRC client)
 
 ### AltGr inversion trick ##
 1. Linux VM need to be configured with Mac Profile Keyboard in settings 
@@ -209,10 +212,10 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 
 #### Dircolors
 
-To install Solarized color theme for Gnome Terminal:
+To install Solarized color theme for LS_COLORS:
 
-	wget --no-check-certificate https://github.com/seebi/solarized/raw/989a67d68e1a35d130d4afe6299b5f1c0d5c9122/ls-colorssolarized/dircolors
-	mv dircolors .dircolors
+	wget --no-check-certificate https://raw.github.com/seebi/dircolors-solarized/master/dircolors.ansi-dark
+	mv dircolors.ansi-dark .dircolors
 	eval `dircolors ~/.dircolors`
 
 To make it persistent you can add the above line to your `~/.zshrc`
