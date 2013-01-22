@@ -2,3 +2,4 @@ crash.log
 output/
 tmp/
 .DS_Store
+._*
