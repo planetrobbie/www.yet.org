@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-ssh_user              = "ubuntu@yet" # for rsync deployment
+ssh_user              = "brauns@yet" # for rsync deployment
 remote_root           = "/var/www/yet/" # for rsync deployment
 
 require 'stringex'
