@@ -10,7 +10,7 @@ At the last [*Chef Conf 2012*](http://chefconf.opscode.com/) event, *Nathen Harv
 
 <!-- more -->
 
-#### Attributes precedences
+### Attributes precedences
 
 Attributes can be set on the node from the following objects:
 
@@ -35,7 +35,7 @@ Automatic have the highest precedence and may not be modified
 
 Be carefull you will likely have too much power here.
 
-#### Encrypted databags
+### Encrypted databags
 
 To create an encrypted Databag for database credentials with knife
 
@@ -85,7 +85,7 @@ Encrypted databags can be checked in source code repository without issues, user
 
 That file can then be checked in your repository.
 
-#### Light-Weight Resources and Providers
+### Light-Weight Resources and Providers
 
 The resources is the interface and the provider is the implementation. 
 
@@ -144,7 +144,7 @@ To use that within a recipe, previous LWRP is bundled in [magic_shell](https://g
 		action :add
 	end
 
-#### Exception and Report Handlers
+### Exception and Report Handlers
 
 * Allow you to run arbitrary code when Chef run, starts, ends, fails or succeed.
 * Most obvious use is to notify when a Chef run fails
@@ -163,7 +163,7 @@ A lot of [handlers](http://wiki.opscode.com/display/chef/Exception+and+Report+Ha
 
 Another example is [DATADOG handler](https://github.com/DataDog/chef-handler-datadog) which will graph anything for you by connecting your data to the [DATADOG](http://www.datadoghq.com/) SaaS solution.
 
-#### Capistrano vs Chef
+### Capistrano vs Chef
 
 Nathen thought about Deploying using Chef Resource or Capistrano ? You can use Deploy resources to deploy your application using Chef, however *CustomInk* doesn't use Chef for that task for the following reasons :
 
@@ -181,13 +181,13 @@ Capistrano is a way to deploy your code, you have to specifies a list of web ser
 	end
 	role :web, *webservers
 
-#### Links
+### Links
 
 * <http://nathenharvey.com>
 * [The Food Fight Show](http://foodfightshow.org) - The Chef Community Podcast
 * [*CustomInk*](https://github.com/customink) GitHub repository
 * [Slide decks](https://speakerdeck.com/nathenharvey) from *Nathen* 
 
-#### Conclusion
+### Conclusion
 
 *CustomInk* relies heavily on *Opscode* configuration management technology to maintain their infrastructure and they share a lot of content in their github](https://github.com/customink-webops) repository. Enjoy !!! Thanks Nathen.
