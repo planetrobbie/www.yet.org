@@ -96,8 +96,7 @@ h1, h2, h3, h4, h5, h6 {
           border-color: #F90;}
 
         &.contact a {
-          border-color: #693;
-          margin-right: 120px;}
+          border-color: #693;}
       
         &.active.yet a {background: #333333; color: white;}
         &.active.tags a {background: #34b9dc; color: white;}
@@ -786,7 +785,7 @@ caption {
     background: #fff;
 
     header {
-      background-color: #f5f1e7;
+      background-color: #FFFFFF;
       height: 42px;
 
       h1 {
@@ -796,13 +795,49 @@ caption {
       }
 
       nav {
-        left: auto;
-        right: 0;
+        font-family: 'Yanone Kaffeesatz', sans-serif;
+        font-size: 18px;
+        height: 25px;
+        position: relative;
+        margin-left: 65px;
+        display: block;
+        width: 100%;
+  
+        ol {
+          display: block;
+          -webkit-margin-before: 1em;
+          -webkit-margin-after: 1em;
+          -webkit-margin-start: 0px;
+          -webkit-margin-end: 0px;
+          -webkit-padding-start: 2px;
+        }
+  
+        li {
+          margin: 28px 0 0 3px;
+          display: inline;
+  
+          a {
+            color: #BEC9BC;
+            padding: 4px 2px 0;
+            border-color: #2A82B0;
+            border-top: 2px solid;
+            border-bottom: 0;}
+  
+          a:hover {
+            color: #333333;
+            -moz-transition: color 0.2s ease, background 0.2s ease;
+            -o-transition: color 0.2s ease, background 0.2s ease;
+            -webkit-transition: color 0.2s ease, background 0.2s ease;
+            transition: color 0.2s ease, background 0.2s ease; }
+        }
+
       }
+
       nav ul a {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
       }
+      
       aside {
         display: none;
       }
@@ -900,7 +935,62 @@ caption {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
+
+  h1 { font-size: 27px; line-height: 34px; margin-bottom: 10px; }
+  h2 { font-size: 25px; line-height: 34px; margin-bottom: 8px; }
+  h3 { font-size: 21px; line-height: 30px; margin-bottom: 4px; }
+  h4 { font-size: 17px; line-height: 24px; }
+  h5 { font-size: 14px; line-height: 21px; }
+
+  #page {
+    header {
+      background-color: #FFFFFF;
+      nav {
+        font-family: 'Yanone Kaffeesatz', sans-serif;
+        font-size: 14px;
+        height: 25px;
+        position: relative;
+        margin-left: 34px;
+        display: block;
+        width: 100%;
   
+        ol {
+          display: block;
+          -webkit-margin-before: 1em;
+          -webkit-margin-after: 1em;
+          -webkit-margin-start: 0px;
+          -webkit-margin-end: 0px;
+          -webkit-padding-start: 2px;
+        }
+  
+        li {
+          margin: 28px 0 0 3px;
+          display: inline;
+  
+          a {
+            color: #BEC9BC;
+            padding: 4px 2px 0;
+            border-color: #2A82B0;
+            border-top: 2px solid;
+            border-bottom: 0;}
+  
+          a:hover {
+            color: #333333;
+            -moz-transition: color 0.2s ease, background 0.2s ease;
+            -o-transition: color 0.2s ease, background 0.2s ease;
+            -webkit-transition: color 0.2s ease, background 0.2s ease;
+            transition: color 0.2s ease, background 0.2s ease; }
+        }
+
+      }
+
+      nav ul a {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    }
+  }
+
   .work {
     
     .year-box {
