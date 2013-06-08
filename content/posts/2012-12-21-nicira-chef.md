@@ -3,7 +3,7 @@ title: "Nicira + Opscode Chef: The Journey to an OpenStack Cloud"
 created_at: 2012-12-21 18:32:00 +0100
 kind: article
 published: true
-tags: ['webinar', 'chef', 'nicira', 'automation', 'devops']
+tags: ['webinar', 'chef', 'nicira', 'automation', 'devops', 'openstack']
 ---
 
 *Nicira* and *OpsCode* partnered to build an OpenStack cloud at VMware. In this webinar we'll have the opportunity to get some insight about it. It allows their team to build location independant labs in 50 seconds, provisionned from a self service portal. Principal driver: cost, agility and speed.
