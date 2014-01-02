@@ -3,7 +3,7 @@ title: "chruby on Mac OS X"
 created_at: 2013-12-24 18:05:00 +0100
 kind: article
 published: true
-tags: ['howto', 'ruby', 'macos']
+tags: ['howto', 'ruby', 'macos', 'dev']
 ---
 
 Ruby is an important tool to have around, Mac OS X already comes bundled with it, but sometimes you need a different version. Mavericks now comes with Ruby 2.0.0-p195, any previous ones comes with 1.8.7 which is very close to end of life. There are lots of alternative to install multiple version of Ruby on your workstation, **[rvm](https://rvm.io/)** or **[rbenv](https://github.com/sstephenson/rbenv)** works well for this job but *[Postmodern](http://postmodern.github.io/)* have another angle to this problem. Quite similar to the **[Arch Linux](https://wiki.archlinux.org/index.php/The_Arch_Way)** Kiss (Keep It Simple, Stupid) philosophy, [chruby](https://github.com/postmodern/chruby) is a deadly simple tool to do just that by updating the environment variables: $RUBY_ROOT, $RUBY_ENGINE, $RUBY_VERSION, $GEM_ROOT, $GEM_HOME, $GEM_PATH and $RUBYOPT in just 90 lines of codes. Let's details how you can install it on your Mac.

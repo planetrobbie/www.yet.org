@@ -225,7 +225,7 @@ Notes following up a webinar with *Matt Ray* from *[Opscode](http://www.opscode.
 * Chef client on switches running Linux (Arista, Cumulus) should be configured soon with Chef too
 * Juju came well after Chef, Chef OpenStack cookbooks available for 2 years now. Juju only for Ubuntu, licensing doesn't allow easy sharing with other environment
 * How to monitor OpenStack, RackSpace version has their monitor solution embedded
-* Chef for OpenStack do not have moniroting built to the system
+* Chef for OpenStack do not have monitoring built to the system
 * Ceph handle checksum for bit rot, it will delete the object and pull out new replica
 * 12 Disk per Node should evolve to 16 Disk but need to check if it will be ok with 10G Network connection
 * Cloud Compute everything backed by Ceph no Ephemeral storage, better for end users. Terminate an instance won't destroy its content
