@@ -55,6 +55,8 @@ App launcher, displays an optimal 3x5 paged grid of app icons built for speed an
 
 Plank is one of the only part of Elementary to be developed in Vala by 3rd party developers and features LibUnity integration to allow to show app badges, progess bars and contextual quicklist items.
 
+If you need to change the Dock Position, change the value of `Position=` in the `~/.config/plank/dock1/settings` file, put instead: `0/1/2/3` respectively for `left/up/righ/bottom`.
+
 ### Settings - [Switchboard](https://launchpad.net/switchboard) ###
 
 ![][Switchboard]
@@ -162,8 +164,8 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 		gconftool -R /system/http_proxy [to remove proxying which interfere with Sublime Text Package Control]
 * *iftop*, *vnstat*, *htop*, *slurm* installed for network & process monitoring
 * *tree* installed for nice tree dir colored output.
-* *dnstools* installed to debug DNS issues
-* *dropbox* installed from deb provided on their site/
+* *dnstools* installed to debug DNS issues.
+* *dropbox* installed from deb provided on their site.
 * *dconf-tools* to configure Pantheon Terminal colors using `dconf-editor` but still a work in progress, waiting for future release of Luna. Currently using Gnome Terminal instead to benefit from Solarized Dark palette. using customization below.
 * sudo apt-get install python-setuptools; easy_install Pygments; easy_install sphinx; export LC_ALL=en_US.UTF; export LANG=en_US.UTF-8; make html; make epub
 * sudo apt-get install sshfs; usermod -a -G fuser brauns; sshfs user@<ip>:/remote/path/ /mnt/local/path
@@ -185,6 +187,8 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 
 4. Reread this file with xmodmap .Xmodmap
 5. see [here](https://help.ubuntu.com/community/AppleKeyboard) for more information on Apple Keyboard on Ubuntu
+
+Note: to display keycode of touch pressed on the keyboard, you can launch from a terminal the `showkey` application.
 
 ### Adding Sublime Text 2 Icon & Launcher ##
 	

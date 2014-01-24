@@ -11,6 +11,16 @@ This cheatsheet is based on the [Tuts+ online training](https://tutsplus.com/cou
 
 <!-- more -->
 
+## Installation on Ubuntu or Elementary OS
+
+Sublime Text 3 is in the works, still in [beta](http://www.sublimetext.com/3). In the meantime you can install version 2.0.2, from a terminal:
+
+	sudo add-apt-repository ppa:webupd8team/sublime-text-2
+	sudo apt-get update
+	sudo apt-get install sublime-text
+
+But if you prefer you can download `Sublime-Text2.0.2-x64.tar.bz2` from *Sublime Text* [official site](http://www.sublimetext.com/2), Windows or OSX binaries are also there.
+
 ## Killer features ##
 
 * `Crtl + Shift + p` Command Palette to limit mouse interaction
@@ -53,7 +63,7 @@ This cheatsheet is based on the [Tuts+ online training](https://tutsplus.com/cou
 ### Rails tips & tricks
 
 Install [*ERB Insert and Toggle Commands*](http://github.com/eddorre/SublimeERB) using *Package Control*, it gives you easy access to ERb tags, you just need to add the following to your user key bindings after installation to cycle thru Erb Tags with a simple key press:
-
+	
 	[
 	    { "keys": ["ctrl+="], "command": "erb" }
 	]
@@ -84,6 +94,8 @@ Note: If you type `install` in the Command Palet, you can easily install new pac
 		
 		gconftool -R /system/http_proxy
 
+If Package Control install fails silently, just remove the `Package settings > Package control: user` repositories you've configured.
+
 ## Packages ##
 
 ### PlainTasks ###
@@ -100,7 +112,7 @@ This package offers a great way to manage your tasks as plain text files.
 |*@feature*|Tags|
 |*- - + tab*|- - - ✄ - -|
 |*Crtl + Shit + up/down*|Re-order tasks|
-|*Crtl + r*|List of project| 
+|*Crtl + r*|List of project|
 
 If you use [*DropBox*](https://www.dropbox.com) and [*TaskPaper*](http://www.hogbaysoftware.com/products/taskpaper) for iOS, you'll be able to sync up your task to all your devices using the following *PlainTask* Configuration update :
 
@@ -111,6 +123,14 @@ If you use [*DropBox*](https://www.dropbox.com) and [*TaskPaper*](http://www.hog
 
 Following [Patch](https://github.com/aziz/PlainTasks/pull/25/files) applied, for full TaskPaper compatibility.
 
+### FindKeyConflicts ###
+
+Sometimes you press a key and the result surprise you, it's maybe due to a binding conflict. The last settings always preval. To check for that you can use [FindKeyConflicts](https://github.com/skuroda/FindKeyConflicts) Package.
+
+### Chef ###
+
+If you are like me and are interested in *[Chef](http://www.getchef.com)*, a configuration management framework. You can install the [Chef package](https://sublime.wbond.net/packages/Chef) that will add autocompletion for common Chef idioms.
+
 ## Customization ##
 
 ### My favorite color schemes for MultiMarkdown ###
@@ -120,7 +140,13 @@ Following [Patch](https://github.com/aziz/PlainTasks/pull/25/files) applied, for
 * *Monokai* : Default one but not enough colorized details for MMD
 
 Note : Solarized Dark and Light are the most popular ones following scientist studies that consider the best lighting for the night and the one the day.
-                      
+
+## Keyboard troubleshooting ##
+
+Running Sublime Text 2 under VMware Fusion can sometimes be troublesome when it comes to Key bindings. To see what keys sublime gets from the OS, open the Python console from the `View > Console` menu and type
+
+	sublime.log_input(True)
+
 ## Links ##
 
 * [Official site](https://www.sublimetext.com/)
