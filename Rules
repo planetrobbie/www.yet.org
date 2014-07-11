@@ -33,6 +33,7 @@ compile '/posts/*' do
   filter :colorize_syntax,
                 :colorizers => { :ruby => :coderay, :css => :coderay, :html => :coderay },
                 :coderay    => {}
+
   layout 'post'
 end
 

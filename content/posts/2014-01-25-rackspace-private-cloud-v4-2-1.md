@@ -325,6 +325,8 @@ From the Horizon Dashboard you can now click on `Allocate IP to Project` a few t
 
 Before you can launch your first instance, you just have to create or use an existing SSH key pair. You can import your existing `.ssh/id_rsa.pub` or create a newer one using `ssh-keygen`, it's even possible to do that step from the Horizon Dashboard.
 
+Try to launch multiple instances and access them externally after associating floating IPs.
+
 ### Neutron Networking
 
 #### Switch Havana Environment to Neutron.
@@ -581,6 +583,7 @@ It provides a really proven framework to deploy OpenStack which is really the mo
 ### Rackspace Private Cloud Links
 
 * [Software homepage](http://www.rackspace.com/cloud/private)
+* [4.2.1 Release Notes](http://www.rackspace.com/knowledge_center/article/rackspace-private-cloud-v421-release-notes-0)
 * [Knowledge Center](http://www.rackspace.com/knowledge_center/getting-started/rackspace-private-cloud)
 * [Configuring OpenStack Networking](http://www.rackspace.com/knowledge_center/article/configuring-openstack-networking)
 * [VMDK conversion tool](https://github.com/rcbops/support-tools/tree/master/vmdk-conversion)
