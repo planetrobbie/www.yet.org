@@ -6,13 +6,13 @@ published: true
 tags: ['howto', 'nsx']
 ---
 
-Last week we reviewed all the tips & tricks to troubleshoot *Open vSwitch* and *OpenStack Neutron*. *NSX vSphere* (NSX-v) is a different beast, mostly because it leverage *VMware Distributed Switch* (VDS) instead of *Open vSwitch*. I spent the last few days gathering all the CLI to troubleshoot it. So I'm pleased to share my findings with all of you.
+[Last week](/2014/09/openvswitch-troubleshooting/) we reviewed all the tips & tricks to troubleshoot *Open vSwitch* and *OpenStack Neutron*. *NSX vSphere* (NSX-v) is a different beast, mostly because it leverage *VMware Distributed Switch* (VDS) instead of *Open vSwitch*. As a cheatsheet, I'm gathering all the CLI to troubleshoot it over here, for easy cut & past, some commands are damn long. But wait don't forget the tab completion on our NSX CLI, it's pretty nice ;) But you have to know where to start, hope this helps.
 
 <!-- more -->
 
 ### NSX vSphere Web UI
 
-Before jumping into the marvelous world of command lines, as a starter, we'll check the state of the environment from the *vSphere Web Client UI*.
+Before jumping into the marvelous world of command lines, as a starter, we'll check the state of the environment from the *vSphere Web Client UI* standpoint.
 
 Authenticate to your web client, and click on `Network & Security > Installation > Management`. 
 
@@ -43,7 +43,7 @@ If VXLAN Connectivity isn't operational, I mean if a VM on a VXLAN cannot ping a
 `++netstack=vxlan` instruct the ESXi host to use the VXLAN TCP/IP stack.  
 `-d` set Don’t Fragment bit on IPv4 packet  
 `-s 1572` set packet size to 1572 to check if MTU is correctly setup up to 1600  
-`-II` VXLAN vmkernel interface name  
+`-I` VXLAN vmkernel interface name  
 `1.2.3.4` Destination ESXi host IP Address  
 
 If the ping fails, launch another one without the don't fragment/size argument set
@@ -160,9 +160,10 @@ NTP is mandatory, so make sure it's correctly configured
 
 To troubleshoot controller networking you can also use
 
-	traceroute <ip_address or dns_name>
-	ping <ip address> or ping interface addr <alternate_src_ip> <ip_address>
-	watch network interface breth0 traffic
+	# traceroute <ip_address or dns_name>
+	# ping <ip address>
+	# ping interface addr <alternate_src_ip> <ip_address>
+	# watch network interface breth0 traffic
 
 #### L2 networking troubleshooting
 
@@ -172,16 +173,63 @@ First make sure to connect on the master controller of the virtual network you w
 	VNI      Controller      BUM-Replication ARP-Proxy Connections VTEPs
 	5001     192.168.110.201 Enabled         Enabled   0           0
 
-You'll find below many more commands you can use on the master Controller for your Virtual Network (VNI = 5001 here).
+As you can see above, you should now connect to `192.168.110.201` to troubleshoot VNI 5001.
+
+Let see what we can use on that controller node to get more information on this virtual wire (VNI = 5001).
+
+If you want to check the managemement TCP connection between Controller and ESXi
 
 	# show control-cluster logical-switches connection-table 5001
+	Host-IP         Port  ID
+	192.168.110.51  17528 2
+	192.168.110.52  46026 3
+	192.168.210.56  42257 4
+	192.168.210.51  30969 5
+	192.168.210.57  12127 6
+	192.168.210.52  30280 7
+	
+To see which ESXi instantiate this Logical Switch (LS).
+
+Note: Mac address in the output are the one from the VXLAN vmkernel interface not the one from the Physical uplink.
+
 	# show control-cluster logical-switches vtep-table 5001
+	VNI      IP              Segment         MAC               Connection-ID
+	5001     192.168.250.54  192.168.250.0   00:50:56:6c:20:30 4
+	5001     192.168.250.53  192.168.250.0   00:50:56:60:24:53 6
+	5001     192.168.250.52  192.168.250.0   00:50:56:61:23:00 7
+	5001     192.168.250.51  192.168.250.0   00:50:56:6b:4b:a4 5
+	5001     192.168.150.51  192.168.150.0   00:50:56:60:6a:3a 2
+	5001     192.168.150.52  192.168.150.0   00:50:56:6e:5e:e3 3
+
+List Mac addresses on a Logical Switch.
+
 	# show control-cluster logical-switches mac-table 5001
+	VNI      MAC               VTEP-IP         Connection-ID
+	5001     00:50:56:ae:9b:be 192.168.250.51  5
+
+Same for ARP table on the Logical Switch
+
 	# show control-cluster logical-switches arp-table 5001
-	# show control-cluster logical-switches joined-vni <ip>
-	# show control-cluster logical-switches vtep-records <ip>
-	# show control-cluster logical-switches mac-records <ip>
-	# show control-cluster logical-switches arp-records <ip>
+
+List the VNIs on a specific ESXi
+
+	# show control-cluster logical-switches joined-vnis <ESXi_MGT_IP>
+	VNI      Controller      BUM-Replication ARP-Proxy Connections VTEPs
+	5001     192.168.110.201 Enabled         Enabled   6           6
+
+Shows ESXi VTEP IP/Mac addresses for each joined VNIs
+
+	# show control-cluster logical-switches vtep-records <ESXi_MGT_IP>
+	VNI      IP              Segment         MAC               Connection-ID
+	5001     192.168.150.51  192.168.150.0   00:50:56:60:6a:3a 2
+
+List all VMs Mac addresses on each VNIs of a specific ESXi with their associated VTEP.
+
+	# show control-cluster logical-switches mac-records <ESXi_MGT_IP>
+
+List all VMs IP/Mac on each each VNIs of a specific ESXi
+
+	# show control-cluster logical-switches arp-records <ESXi_MGT_IP>
 
 #### L3 networking troubleshooting
 
@@ -245,6 +293,103 @@ And now the Mac address on them
 
 In the introduction we've seen how to send ping on the transport network. But from a SSH connection to an ESXi node, we can use many more troubleshooting commands. This section will details most of them.
 
+#### VIBs
+
+When you prepare a compute host for NSX-v, vSphere Installation Bundle (VIBs) are automatically installed by the NSX Manager via ESX Agency Manager (EAM). You can check they were correctly installed (output abridged):
+
+	# esxcli software vib get --vibname esx-vxlan
+   		...
+   		Summary: Vxlan and host tool
+   		Description: This package loads module and configures firewall for vxlan networking.
+   		...
+   		Provides: vxlan = 2.0.0.0-nsx, vdr = 1.0.0.0
+   		Maintenance Mode Required: False
+   		...
+
+	# esxcli software vib get --vibname esx-vsip
+   		...
+   		Summary: vsip module
+   		Description: This package contains DFW and NetX data and control plane components.
+   		...
+   		Provides: vsip = 1.0.0-0
+   		Maintenance Mode Required: False
+   		...
+
+   	# esxcli software vib get --vibname esx-dvfilter-switch-security
+	   ...
+	   Summary: dvfilter-switch-security module
+	   Description: This package contains dvfilter-switch-security module.
+	   ...
+	   Provides: switchSecurity = 0.1.0.0
+	   Maintenance Mode Required: False
+	   ...
+	
+When you remove a host from an NSX Prepared cluster the VIBs will be automatically removed, but you can remove them from the command line :
+	
+	# esxcli software vib remove -n esx-vsip
+	# esxcli software vib remove -n esx-vxlan
+	# esxcli software vib remove -n esx-dvfilter-switch-security
+
+You'll then have to reboot your host.
+
+#### Physical Nics
+
+To list all the host physical interface, to check driver and MTU:
+
+	# esxcli network nic list
+
+	Name    PCI Device     Driver  Link  Speed  Duplex  MAC Address         MTU  Description
+	------  -------------  ------  ----  -----  ------  -----------------  ----  ------------------	-------------------------
+	vmnic0  0000:000:14.0  igb     Up     1000  Full    00:25:90:f4:76:8e  1600  Intel Corporation 	Ethernet Connection I354
+	vmnic1  0000:000:14.1  igb     Up     1000  Full    00:25:90:f4:76:8f  1600  Intel Corporation 	Ethernet Connection I354
+	vmnic2  0000:000:14.2  igb     Up     1000  Full    00:25:90:f4:76:90  1600  Intel Corporation 	Ethernet Connection I354
+	vmnic3  0000:000:14.3  igb     Up     1000  Full    00:25:90:f4:76:91  1600  Intel Corporation 	Ethernet Connection I354
+
+To get more details on a Nic
+
+	# esxcli network nic get  -n vmnic0
+
+	Advertised Auto Negotiation: true
+	Advertised Link Modes: 10baseT/Half, 10baseT/Full, 100baseT/Half, 100baseT/Ful	1000baseT/Full
+	Auto Negotiation: true
+	Cable Type: Twisted Pair
+	Current Message Level: 7
+	Driver Info:
+	      Bus Info: 0000:00:14.0
+	      Driver: igb
+	      Firmware Version: 0.0.0
+	      Version: 5.2.5
+	Link Detected: true
+	Link Status: Up by explicit linkSet
+	Name: vmnic0
+	PHYAddress: 0
+	Pause Autonegotiate: true
+	Pause RX: false
+	Pause TX: false
+	Supported Ports: TP
+	Supports Auto Negotiation: true
+	Supports Pause: true
+	Supports Wakeon: true
+	Transceiver: internal
+	Wakeon: MagicPacket(tm)
+
+To check TCP segmentation offload (TSO) and checksum offload (CSO) settings for a Nic
+
+	# esxcli network nic tso get -n vmnic0
+	# esxcli network nic cso get -n vmnic0
+
+If you see some strange behavior while using LACP, you can use the following commands to leave only one interface up to verify if LACP negotiation is reponsible for your issues:
+
+	# esxcli network nic down -n vmnic1
+	# esxcli network nic down -n vmnic2
+	# esxcli network nic down -n vmnic3
+
+To revert it:
+
+	# esxcli network nic up -n vmnic1
+	# esxcli network nic up -n vmnic2
+	# esxcli network nic up -n vmnic3
+
 #### VMs
 
 Get a list of all VMs on the compute node
@@ -271,8 +416,6 @@ Get a list of all VMs on the compute node
 	  497                 1           dr-4-bridging-0.eth0
 	  127                 1           br-sv-01a.eth0
 
-
-
 #### VMkernel Port
 
 	# esxcfg-vmknic -l
@@ -295,62 +438,333 @@ Get a list of all VMs on the compute node
 	192.168.110.22   00:50:56:09:11:07  vmk0    1146 sec         Unknown
 	10.10.20.60      00:50:56:27:49:6b  vmk1     506 sec         Unknown
 
+#### VXLAN
+
+Dump VXLAN configuration
+
+	# esxcli network vswitch dvs vmware vxlan list
+	VDS ID                                           VDS Name        MTU  Segment ID     Gateway IP     Gateway MAC        Network Count  Vmknic Count
+	-----------------------------------------------  -------------  ----  -------------  -------------  -----------------  -------------  ------------
+	1c ec 0e 50 02 9c a9 21-b6 d8 d0 fc 73 e5 79 69  Mgmt_Edge_VDS  1600  192.168.150.0  192.168.150.2  00:50:56:27:48:7d              2             1
+
+List VXLAN networks, great to see who's the master controller for each VXLAN.
+
+	# esxcli network vswitch dvs vmware vxlan network list --vds-name=<VDS_NAME>
+	VXLAN ID  Multicast IP               Control Plane                        Controller Connection  Port Count  MAC Entry Count  ARP Entry Count  MTEP Count
+	--------  -------------------------  -----------------------------------  ---------------------  ----------  ---------------  ---------------  ----------
+	    5000  N/A (headend replication)  Enabled (multicast proxy,ARP proxy)  192.168.110.202 (up)	          1                1                0           0
+	    5004  N/A (headend replication)  Enabled (multicast proxy,ARP proxy)  192.168.110.203 (up)            1                0                0           0	
+Get more details on a specific VXLAN wire
+
+	# esxcli network vswitch dvs vmware vxlan network mac list --vds-name=Mgmt_Edge_VDS --vxlan-id=<VXLAN ID>
+	Inner MAC          Outer MAC          Outer IP        Flags
+	-----------------  -----------------  --------------  --------
+	00:50:56:ae:9b:be  ff:ff:ff:ff:ff:ff  192.168.250.51  00001111
+
+But you can also get specific information on the VXLAN like mac, arp, port, mtep and stats like this
+
+For example to list all the remote Mac addresses, pushed by the controller for a specific VNI:
+
+	# esxcli network vswitch dvs vmware vxlan network mac list –-vds-name=<VDS_NAME> --vxlan-id=<VXLAN_ID>
+
+You can get also the remote IP Addresses/Mac Addresses that are still in the local ESXi cache. They timeout after 5' if no traffic.
+
+	# esxcli network vswitch dvs vmware vxlan network arp list --vds-name=<VDS_NAME> --vxlan-id=<VXLAN_ID>
+
+To get a list of remote known ESXi for a VNI. You'll also see who's the MTEP on each Transport Network subnet.
+
+	# esxcli network vswitch dvs vmware vxlan network vtep list --vds-name=<VDS_NAME> --vxlan-id=<VXLAN_ID>
+
+Note: if you don't get the `vtep` argument but he `mtep` one intead, just run `/etc/init.d/hostd restart`
+
+	# esxcli network vswitch dvs vmware vxlan network port list --vds-name=<VDS_NAME> --vxlan-id=<VXLAN_ID>
+
+	# esxcli network vswitch dvs vmware vxlan network stats list --vds-name=<VDS_NAME> --vxlan-id=<VXLAN_ID>	
+
 #### Controller connectivity
 
 To check Controller connectivity from ESXi (VDL= Virtual Distributed Layer 2)
 
-	net-vdl2 -l
-	XXX
+	# net-vdl2 -l
+	VXLAN Global States:
+	        Control plane Out-Of-Sync:      No
+	        UDP port:       8472
+	VXLAN VDS:      Mgmt_Edge_VDS
+	        VDS ID: 1c ec 0e 50 02 9c a9 21-b6 d8 d0 fc 73 e5 79 69
+	        MTU:    1600
+	        Segment ID:     192.168.150.0
+	        Gateway IP:     192.168.150.2
+	        Gateway MAC:    00:50:56:27:48:7d
+	        Vmknic count:   1
+	                VXLAN vmknic:   vmk3
+	                        VDS port ID:    905
+	                        Switch port ID: 50331656
+	                        Endpoint ID:    0
+	                        VLAN ID:        0
+	                        IP:             192.168.150.52
+	                        Netmask:        255.255.255.0
+	                        Segment ID:     192.168.150.0
+	                        IP acquire timeout:     0
+	                        Multicast group count:  0
+	        Network count:  2
+	                VXLAN network:  5000
+	                        Multicast IP:   N/A (headend replication)
+	                        Control plane:  Enabled (multicast proxy,ARP proxy)
+	                        Controller:     192.168.110.202 (up)
+	                        MAC entry count:        1
+	                        ARP entry count:        0
+	                        Port count:     1
+	                VXLAN network:  5004
+	                        Multicast IP:   N/A (headend replication)
+	                        Control plane:  Enabled (multicast proxy,ARP proxy)
+	                        Controller:     192.168.110.203 (up)
+	                        MAC entry count:        0
+	                        ARP entry count:        0
+	                        Port count:     1
 
 Or
 
-	# esxcli network vswitch dvs vmware vxlan network list –vds-name <vds name>
+	# esxcli network vswitch dvs vmware vxlan network list -–vds-name <vds name>
+	VXLAN ID  Multicast IP               Control Plane                        Controller Connection  Port Count  MAC Entry Count  ARP Entry Count  MTEP Count
+	--------  -------------------------  -----------------------------------  ---------------------  ----------  ---------------  ---------------  ----------
+	    5000  N/A (headend replication)  Enabled (multicast proxy,ARP proxy)  192.168.110.202 (up)	          1                1                0           0
+	    5004  N/A (headend replication)  Enabled (multicast proxy,ARP proxy)  192.168.110.203 (up)            1                0                0           0
+
 
 If you see a controller down message above, you can fix it by restarting `netcpa` like this
 
-	/etc/init.d/netcpa restart
+	# /etc/init.d/netcpad restart
 
-To check ESXi controller connections
+Note: netcpa is a user world agent that communicate thru SSL with the NSX Controller.
 
-	esxcli network ip connection list| grep tcp | grep 1234
-	XXX
+To check ESXi controller connections.
+
+	# esxcli network ip connection list| grep tcp | grep 1234
+	
+	tcp         0       0  192.168.110.52:43925  192.168.110.203:1234  ESTABLISHED     44923  newreno  netcpa-worker
+	tcp         0       0  192.168.110.52:46026  192.168.110.202:1234  ESTABLISHED     46232  newreno  netcpa-worker
+	tcp         0       0  192.168.110.52:39244  192.168.110.201:1234  ESTABLISHED     44923  newreno  netcpa-worker
+
+As you can see, your compute node is connected to all Controllers.
 
 #### Logical Router
 
-First get a list of running distributed router (VDR) instance
+First get a list of distributed router (VDR) instances
 	
-	net-vdr --instance -l
-	XXX
+	# net-vdr --instance -l
+	
+	VDR Instance Information :
+	---------------------------
+	
+	VDR Instance:               default+edge-1:1460487509
+	Vdr Name:                   default+edge-1
+	Vdr Id:                     1460487509
+	Number of Lifs:             3
+	Number of Routes:           1
+	State:                      Enabled
+	Controller IP:              192.168.110.201
+	Control Plane Active:       Yes
+	Control Plane IP:           192.168.110.52
+	Edge Active:                Yes
 
 
-Dump all the Lifs for a VDR instance
+Dump all the logical interfaces (LIFs) for a VDR instance
 	
-	net-vdr --lif -l <vdrName>
+	# net-vdr --lif -l default+edge-1
+
+	VDR default+edge-1:1460487509 LIF Information :
+
+	Name:                570d45550000000c
+	Mode:                Routing, Distributed, Internal
+	Id:                  Vxlan:5004
+	Ip(Mask):            10.10.10.1(255.255.255.0)
+	Connected Dvs:       Mgmt_Edge_VDS
+	VXLAN Control Plane: Enabled
+	VXLAN Multicast IP:  0.0.0.1
+	State:               Enabled
+	Flags:               0x2288
+	
+	Name:                570d45550000000b
+	Mode:                Bridging, Sedimented, Internal
+	Id:                  Vlan:100
+	Bridge Id:           mybridge:1
+	Ip(Mask):            0.0.0.0(0.0.0.0)
+	Connected Dvs:       Mgmt_Edge_VDS
+	Designated Instance: No
+	DI IP:               192.168.110.51
+	State:               Enabled
+	Flags:               0xd4
+	
+	Name:                570d45550000000a
+	Mode:                Bridging, Sedimented, Internal
+	Id:                  Vxlan:5000
+	Bridge Id:           mybridge:1
+	Ip(Mask):            0.0.0.0(0.0.0.0)
+	Connected Dvs:       Mgmt_Edge_VDS
+	VXLAN Control Plane: Enabled
+	VXLAN Multicast IP:  0.0.0.1
+	State:               Enabled
+	Flags:               0x23d4
 
 Check routing status
 
-	net-vdr -R -l default+edge-4
+	# net-vdr -R -l default+edge-1
+
+	VDR default+edge-1:1460487509 Route Table
+	Legend: [U: Up], [G: Gateway], [C: Connected], [I: Interface]
+	Legend: [H: Host], [F: Soft Flush] [!: Reject]
+	
+	Destination      GenMask          Gateway          Flags    Ref Origin   UpTime     Interface
+	-----------      -------          -------          -----    --- ------   ------     ---------
+	10.10.10.0       255.255.255.0    0.0.0.0          UCI      1   MANUAL   410777     570d45550000000c
 
 ARP information
 	
-	net-vdr --nbr -l default+edge6
+	# net-vdr --nbr -l default+edge-1
+
+	VDR default+edge-1:1460487509 ARP Information :
+	Legend: [S: Static], [V: Valid], [P: Proxy], [I: Interface]
+	Legend: [N: Nascent], [L: Local], [D: Deleted]
+	
+	Network           Mac                  Flags      Expiry     SrcPort    Interface Refcnt
+	-------           ---                  -----      -------    ---------  --------- ------
+	10.10.10.1        02:50:56:56:44:52    VI         permanent  0          570d45550000000c 1
+
 
 Designated instance statistics
 	
-	net-vdr --di —stats
+	# net-vdr --di —stats
+
+	VDR Designated Instance Statistics:
+
+        RX Pkts:                        0
+        RX Bytes:                       0
+        TX Pkts:                        0
+        TX Bytes:                       0
+        ARP Requests:                   0
+        ARP Response:                   0
+        ARP Resolved:                   0
+        Err RX:                         0
+        Err TX:                         0
+        Err Message too Small:          0
+        Err Message too Big:            0
+        Err Invalid Version:            0
+        Err Invalid Message Type:       0
+        Err Instance Not Found:         0
+        Err LIF not DI:                 0
+        Err No memory:                  0
+        Err ARP not found:              0
+        Err Proxy not found:            0
+        Err DI Remote:                  0
 
 #### Bridging
 
 Dump bridge info
 	
-	net-vdr --bridge -l <vdrName>
+	# net-vdr --bridge -l <vdrName>
+
+	VDR default+edge-1:1460487509 Bridge Information :
+
+	Bridge config:
+	Name:id             mybridge:1
+	Portset name:
+	DVS name:           Mgmt_Edge_VDS
+	Ref count:          2
+	Number of networks: 2
+	Number of uplinks:  0
+	
+	        Network 'vlan-100-type-bridging' config:
+	        Ref count:          2
+	        Network type:       1
+	        VLAN ID:            100
+	        VXLAN ID:           0
+	        Ageing time:        300
+	        Fdb entry hold time:1
+	        FRP filter enable:  1
+	
+	                Network port '50331655' config:
+	                Ref count:          2
+	                Port ID:            0x3000007
+	                VLAN ID:            4095
+	                IOChains installed: 0
+	
+	        Network 'vxlan-5000-type-bridging' config:
+	        Ref count:          2
+	        Network type:       1
+	        VLAN ID:            0
+	        VXLAN ID:           5000
+	        Ageing time:        300
+	        Fdb entry hold time:1
+	        FRP filter enable:  1
+	
+	                Network port '50331655' config:
+	                Ref count:          2
+	                Port ID:            0x3000007
+	                VLAN ID:            4095
+	                IOChains installed: 0
 
 Lists MAC table, learnt on both VXLAN and VLAN sides 
 
-	net-vdr -b --mac default+edge-1 
+	# net-vdr -b --mac default+edge-1
 
-Dump statistics
-	net-vdr -b --stats default+edge-1
+	VDR default+edge-1:1460487509 Bridge Information :
+
+	Network 'vlan-100-type-bridging' MAC address table:
+	MAC table on PortID:              0x0
+	MAC table paging mode:            0
+	Single MAC address enable:        0
+	Single MAC address:               00:00:00:00:00:00
+	MAC table last entry shown:       00:50:56:91:5e:93 VLAN-VXLAN: 100-0 Port: 50331661
+	total number of MAC addresses:    1
+	number of MAC addresses returned: 1
+	MAC addresses:
+	Destination Address  Address Type  VLAN ID  VXLAN ID  Destination Port  Age
+	-------------------  ------------  -------  --------  ----------------  ---
+	00:50:56:91:5e:93    Dynamic           100         0          50331661  0
+	
+	
+	Network 'vxlan-5000-type-bridging' MAC address table:
+	MAC table on PortID:              0x0
+	MAC table paging mode:            0
+	Single MAC address enable:        0
+	Single MAC address:               00:00:00:00:00:00
+	MAC table 	last entry shown:       00:50:56:ae:9b:be VLAN-VXLAN: 0-5000 Port: 50331650
+	total number of MAC addresses:    1
+	number of MAC addresses returned: 1
+	MAC addresses:
+	Destination Address  Address Type  VLAN ID  VXLAN ID  Destination Port  Age
+	-------------------  ------------  -------  --------  ----------------  ---
+	00:50:56:ae:9b:be    Dynamic             0      5000          50331650  0
+
+Dump statistics (output not shown)
+
+	# net-vdr -b --stats default+edge-1
+
+#### Distributed Firewall 
+
+To investigate the Distributed Firewall Rules applied to a Virtual Machine vNic, first get the VM UUID (vcUuid) for it using (output abridged)
+
+	# summarize-dvfilter
+	..
+	world 230869 vmm0:br-sv-01a vcUuid:'50 11 97 6c fa 73 a7 5b-a7 0e 36 1f a2 f5 84 38'
+	..
+
+Now find the filter name for that VM UUID
+
+	# vsipioctl getfilters
+
+	Filter Name              : nic-230869-eth0-vmware-sfw.2
+	VM UUID                  : 50 11 97 6c fa 73 a7 5b-a7 0e 36 1f a2 f5 84 38
+	VNIC Index               : 0
+	Service Profile          : --NOT SET--
+
+Use the filter name above to list the associated Distributed Firewall Rules
+
+	# vsipioctl getrules -f nic-230869-eth0-vmware-sfw.2
+
+To details Addresses Sets
+
+ 	# vsipioctl getaddrsets -f nic-230869-eth0-vmware-sfw.2
 
 #### Packet Capture
 
@@ -366,7 +780,7 @@ As you can see on the diagram above, we can now capture traffic at the `vmnic`, 
 
 Let see how it works from the outside world to the VM. I'm not going to include the ouput of the command here, I advice you to try on your hosts instead. By the way I also advice to save the output to a file in pcap format with `-o ./save.pcap`, you'll then be able to open it from Wireshark.
 
-####  UPlink/vmnic
+####  uplink/vmnic
 
 You can open up the DVUplinks section of your VDS to get the name of your uplink interface. Here we'll be using `vmnic0`. So to capture packets received on this uplink, use
 
@@ -460,13 +874,34 @@ This command captures packets after being subject to the dvfilter.
 
 	pktcap-uw --capture PostDVFilter --dvfilterName <filter name>   
 
-#### Capture point XXX
+#### Capture point
 
-You can get a list of all possible capture point with `-A` XXX
+You can get a list of all possible capture point with `-A`
 
 	pktcap-uw -A
+	Supported capture points:
+        1: Dynamic -- The dynamic inserted runtime capture point.
+        2: UplinkRcv -- The function that receives packets from uplink dev
+        3: UplinkSnd -- Function to Tx packets on uplink
+        4: Vmxnet3Tx -- Function in vnic backend to Tx packets from guest
+        5: Vmxnet3Rx -- Function in vnic backend to Rx packets to guest
+        6: PortInput -- Port_Input function of any given port
+        7: IOChain -- The virtual switch port iochain capture point.
+        8: EtherswitchDispath -- Function that receives packets for switch
+        9: EtherswitchOutput -- Function that sends out packets, from switch
+        10: PortOutput -- Port_Output function of any given port
+        11: TcpipDispatch -- Tcpip Dispatch function
+        12: PreDVFilter -- The DVFIlter capture point
+        13: PostDVFilter -- The DVFilter capture point
+        14: Drop -- Dropped Packets capture point
+        15: VdrRxLeaf -- The Leaf Rx IOChain for VDR
+        16: VdrTxLeaf -- The Leaf Tx IOChain for VDR
+        17: VdrRxTerminal -- Terminal Rx IOChain for VDR
+        18: VdrTxTerminal -- Terminal Tx IOChain for VDR
+        19: PktFree -- Packets freeing point
 
-In summary here is the list of all the possibilities
+
+Let me share with you a little bit more details about some of them.
 
 `PortOutput` show traffic delivered from the vSwitch to the Guest when used with switch port or to the physical adapter if used with a physical adapter  
 `VdrRxLeaf` - Capture packets at the receive leaf I/O chain of a dynamic router in VMware NSX. Use this capture point together with the --lifID option  
@@ -475,9 +910,9 @@ In summary here is the list of all the possibilities
 `VdrTxTerminal` - Capture packets at the transmit terminal I/O chain of a dynamic router in VMware NSX. Use this capture point together with the --lifID option  
 `
 
-#### ctrl-c vs ctrl-d
+#### CTRL-D
 
-Never press `crtl-d` to interupt a running packet capture or you'll be left with a background process still running. If you've done it you can kill it like this
+Never press `CTRL-D` to interupt a running packet capture or you'll be left with a background process still running. If you've done it you can kill it like this
 
 	kill $(lsof |grep pktcap-uw |awk '{print $1}'| sort -u)
 
@@ -485,20 +920,87 @@ Then check it was killed
 	
 	lsof |grep pktcap-uw |awk '{print $1}'| sort -u  
 
+### NSX Edge CLI
+
+NSX Edge offers lots of Layer 4 to Layer 7 services, to name a few :
+
+* VPN
+* SSL-VPN
+* LB
+* FW
+* DHCP Relay
+
+Lets now details the command line interface available from a SSH connection to an NSX Edge
+
+	show ip route
+	show ip ospf neighbor
+	show ip ospf database
+	
+	show configuration {ospf|bgp|isis|static-routing}
+	show configuration {firewall|nat|dhcp|dns}
+	show configuration {loadbalancer|ipec|sslvpn-plus} 
+	show interface [IFNAME]
+	show firewall
+	show ip {route|ospf|bgp|forwarding}
+	show arp
+	show system {cpu|memory|network-stats|storage|uptime}
+	show service {dhcp|dns|highavailability|ipsec|loadbalancer|sslvpn-plus}
+	show log {follow|reverse}
+	show floatable
+
 ### Logs
 
-Controller Logs
+#### Controller Logs
 
 Check ESXi connectivity issues from the Controller
 
 	show log cloudnet/cloudnet_java-vnet-controller.<start-time-stamp>.log
 
+#### NSX Manager
+
+SSH (l: admin) to the NSX Manager and use the following command to access logs
+
+	nsxmgr-l-01a> show manager log follow
+
+You can switch over to a unix shell using
+
+	nsxmgr-l-01a> enable
+	Password: <your NSX-Mgr pwd>
+	nsx_manager# st e
+	Password: <ASK NSX SUPPORT FOR PASSWORD>
+	[root@nsxmgr-l-01a ~]#
+
+#### ESXi Logs
+
+`/var/log/esxupdate.log` check this file if you have VIB installation issues  
+`/var/log/vmkernel.log` Distributed Firewall logs are sent to this file  
+`/var/log/netcpa.log` User World Agent logs  
+
+### Advanced troubleshooting tips & tricks
+
+If you want to troubleshoot your User World Agent, you can increase the netcpa log level like this:
+
+Start by stopping the daemon
+
+	# /etc/init.d/netcpad stop
+
+Enable write permisions on netcpa's config file:
+
+	# chmod +wt /etc/vmware/netcpa/netcpa.xml
+
+Increase log level:
+	
+	# vi /etc/vmware/netcpa/netcpa.xml
+
+Change the XML's /config/log/level value to "verbose", save and restart netcpad
+
+	# /etc/init.d/netcpad start
 
 ### Todo
 
 Section TBD :
 
-* NSX Edge CLI
+* Expand NSX Edge CLI
 * Expand Logs Section
 
 ### Conclusion
