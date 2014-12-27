@@ -6,7 +6,7 @@ published: true
 tags: ['howto', 'nsx', 'openvswitch']
 ---
 
-[Open vSwitch](http://openvswitch.org/) comes embedded with Linux Kernel 3.3 and up, it became the [cornestone](http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=WHY-OVS;hb=HEAD) of Network Virtualisation. But if you start having connectivity issues, it's better to have a great bit of knowledge to really understand it. This article is a cheatsheet that will help you achieve this goal. I hope ;)
+[Open vSwitch](http://openvswitch.org/) comes embedded with Linux Kernel 3.3 and up, it became the [cornerstone](http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=WHY-OVS;hb=HEAD) of Network Virtualisation. But if you start having connectivity issues, it's better to have a great bit of knowledge to really understand it. This article is a cheatsheet that will help you achieve this goal. I hope ;)
 
 <!-- more -->
 

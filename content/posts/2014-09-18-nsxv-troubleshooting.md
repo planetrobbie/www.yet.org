@@ -948,6 +948,28 @@ Lets now details the command line interface available from a SSH connection to a
 	show log {follow|reverse}
 	show floatable
 
+But one of the most convenient one is the following which enable you to dump all ingress/egress traffic on a specific edge interface
+
+	debug packet display interface vNic_0
+
+You'll then get a live display of what's flowing on that virtual network interface:
+
+	tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+	listening on vNic_0, link-type EN10MB (Ethernet), capture size 65535 bytes
+	22:43:44.190770 IP 172.16.16.3 > 224.0.0.5: OSPFv2, Hello, length 48
+	22:43:45.914868 IP 172.16.16.1.17773 > 192.168.2.20.8080: Flags [S], seq 1790616868, win 14600, options [mss 1460,nop,nop,sackOK,nop,wscale 3], length 0
+	22:43:45.915713 IP 192.168.2.20.8080 > 172.16.16.1.17773: Flags [S.], seq 841084052, ack 1790616869, win 29200, options [mss 1460,nop,nop,sackOK,nop,wscale 6], length 0
+	22:43:45.915750 IP 172.16.16.1.17773 > 192.168.2.20.8080: Flags [.], ack 1, win 1825, length 0
+	22:43:45.915990 IP 172.16.16.1.17773 > 192.168.2.20.8080: Flags [P.], seq 1:101, ack 1, win 1825, length 100
+	22:43:45.916497 IP 192.168.2.20.8080 > 172.16.16.1.17773: Flags [.], ack 101, win 457, length 0
+	22:43:45.922654 IP 192.168.2.20.8080 > 172.16.16.1.17773: Flags [P.], seq 4381:4434, ack 101, win 457, length 53
+	22:43:45.922674 IP 192.168.2.20.8080 > 172.16.16.1.17773: Flags [F.], seq 4434, ack 101, win 457, length 0
+	22:43:45.922842 IP 172.16.16.1.17773 > 192.168.2.20.8080: Flags [.], ack 1, win 1825, options [nop,nop,sack 1 {4381:4434}], length 0
+
+You can use the same filtering syntax as the one used by tcpdump, for example :
+
+	debug packet display interface vNic_0 icmp
+
 ### Logs
 
 #### Controller Logs
@@ -975,6 +997,13 @@ You can switch over to a unix shell using
 `/var/log/esxupdate.log` check this file if you have VIB installation issues  
 `/var/log/vmkernel.log` Distributed Firewall logs are sent to this file  
 `/var/log/netcpa.log` User World Agent logs  
+
+#### EAM Logs
+
+EAM logs should be checked when installation of the VIBs module fails.
+
+`/storage/log/vmware/vpx/eam.log` on Linux vCenter  
+`ProgramData/VMware/VMware VirtualCenter/Logs/` on Windows vCenter
 
 ### Advanced troubleshooting tips & tricks
 
