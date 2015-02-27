@@ -848,7 +848,7 @@ So don't be surprised, pktcap-uw doesn't work like tcpdump and by default only c
 
 We've shown you how to save the captured packets to a file, to get a quick overview of the kind of traffic passing by, you can decode the pcap using tcpdump like this
 
-	tcpdump -r save.pcap
+	tcpdump-uw -r save.pcap
 
 But using Wireshark will give you a better vision of the traffic, with all the details.
 
@@ -966,9 +966,13 @@ You'll then get a live display of what's flowing on that virtual network interfa
 	22:43:45.922674 IP 192.168.2.20.8080 > 172.16.16.1.17773: Flags [F.], seq 4434, ack 101, win 457, length 0
 	22:43:45.922842 IP 172.16.16.1.17773 > 192.168.2.20.8080: Flags [.], ack 1, win 1825, options [nop,nop,sack 1 {4381:4434}], length 0
 
-You can use the same filtering syntax as the one used by tcpdump, for example :
+You can use the same filtering syntax as the one used by [tcpdump](http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt), for example :
 
 	debug packet display interface vNic_0 icmp
+
+If you have multiple words for your filter, just add underscore between them
+
+	debug packet display interface vNic_0 dst_port_443
 
 ### Logs
 
@@ -1038,6 +1042,7 @@ This article is a work in progress. I hope you'll accelerate your troubleshootin
 
 ### Links
 
+* [nsx troubleshooting links](http://www.routetocloud.com/troubleshooting-links/)
 * [nsx-compendium](http://networkinferno.net/nsx-compendium)
 
 [nsxv-controller-status]: /images/posts/nsxv-controller-status.png "NSX-v vSphere Web Client - Controller Status"
