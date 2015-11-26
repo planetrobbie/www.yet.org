@@ -1,6 +1,6 @@
 ---
 title: "Mirantis OpenStack 7.0 - Reduced Footprint"
-created_at: 2015-06-18 15:00:00 +0100
+created_at: 2015-10-07 19:16:00 +0100
 kind: article
 published: true
 tags: ['howto', 'openstack', 'mirantis', 'fuel']
@@ -49,7 +49,7 @@ Now Exit the container
 
 ### Create a new OpenStack environment
 
-Connect to the Fuel Web UI which should be available on `https://<fuel-IP>:8443` to create a new [OpenStack Environment](https://docs.mirantis.com/openstack/fuel/fuel-7.0/user-guide.html#create-env-ug).
+Connect to the Fuel Web UI which should be available on `https://<fuel-IP>:8443` to create a new [OpenStack Environment](https://docs.mirantis.com/openstack/fuel/fuel-7.0/user-guide.html#create-env-ug). Choose *Neutron with tunneling segmentation* for the networking setup, if you choose *Neutron with VLAN segmentation* instead you'll have some additional steps to do, described in the [docs](https://docs.mirantis.com/openstack/fuel/fuel-7.0/operations.html#using-the-reduced-footprint-feature).
 
 Power-on your second physical server, wait until it is discovered by Fuel. You can easily check that from the CLI
 
@@ -226,7 +226,7 @@ Now we want to use this VM as a Controller, from the CLI run
 
 If necessary, multiple node-id can be specified separated by commas, if you want a HA deployment. Here we are only deploying one, on node this VM Node ID 7 on Env ID 2:
 
-Configure its Networking from the Fuel Web UI. A new [flexible networking](https://docs.mirantis.com/openstack/fuel/fuel-master/operations.html#using-networking-templates) feature is also available in MOS 7.0 but we'll talk about that in a future article. So from Fuel Web UI click on the little gear icon to access the following node configuration button. We'll leave node configuration as an exercice for the reader.
+Configure its Networking from the Fuel Web UI. A new [flexible networking](https://docs.mirantis.com/openstack/fuel/fuel-master/operations.html#using-networking-templates) feature is also available in MOS 7.0 but we'll talk about that in a future article. So from Fuel Web UI click on the little gear icon to access the following node configuration button. We'll leave node configuration as an exercice for the reader. Make sure to use the following ordering for the Nics: Admin (PXE), Public, Storage, Management, Private or you'll have to change the libvirt template at `/etc/puppet/modules/osnailyfacter/templates/vm_libvirt.erb`.
 
 ![][mos7-reducedfootprint-4]
 
