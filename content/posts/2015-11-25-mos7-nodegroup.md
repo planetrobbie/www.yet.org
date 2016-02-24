@@ -356,6 +356,12 @@ MOS 8.0 will alternatively offer UI support for *Node Groups* which will allow t
 
 One last thing, it will be possible in that release to deploy Controller in non default *Node Groups*, management and vrouter VIP will then be associated with the correct network. That's great if you want your Fuel Master Node and your controller deployed on different racks for example.
 
+### Disclaimer
+
+I shared some internal information regarding *Mirantis OpenStack 8.0*, so I need to also include the following disclaimer.
+
+The content contained herein is for informational purposes only, may not be referenced or added to any contract, and should not be relied upon to make purchasing decisions.  It is not a commitment, promise, or legal obligation to provide any features, functionality, capabilities, code, etc. or to provide anything within any schedule, date, time, etc.  All Mirantis product and service decisions remain at Mirantis sole and exclusive discretion.
+
 ### Conclusion
 
 *Node Groups* offers lots of flexibility to deploy compute nodes on different broadcast domain and is relatively simple to configure. It is also compatible with Mirantis Contrail Fuel Plugin which is often used on large scale deployments.
