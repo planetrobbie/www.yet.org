@@ -14,6 +14,8 @@ If you want to know more, read on.
 
 <!-- more -->
 
+![][k8s-logo]
+
 ### A bit of reading first
 
 The objective of Kubernetes is to abstract away the complexity of managing a fleet of containers. By interacting with a RESTful API, you can describe the desired state of your application and k8s will do whatever necessary to converge the infrastructure to it. It will deploy groups of containers, replicate enough of them, redeploying if some of them fails, etc...
@@ -96,7 +98,7 @@ For example [Deis Workflow](https://github.com/deis/workflow), built upon kubern
 
 Service Discovery could be a DNS service like [Consul](https://www.consul.io/), an external registry like [ZooKeeper](https://zookeeper.apache.org/) or Environment variable injected at bootstrapping time. Kubernetes provide a cluster DNS addon which is using [skydns](https://github.com/skynetservices/skydns) built on top of etcd and [kube2sky]() which talk to the k8s API to provide DNS resolution for containers.
 
-As it stand today Kubernetes doesn't well enough, in om-premise deployment, how the traffic gets routed to your application. Addressing edge routing is essential for the end to end success of hosting your application within a k8s cluster. Ingress are an interesting added feature of k8s v1.2 that need to mature, with a broad ecosystem of Load Balancers, to deliver a robust traffic routing solution for your datacenter.
+As it stands today Kubernetes doesn't do edge routing well enough, when it comes to on-premise deployment. Addressing edge routing is essential for the end to end success of hosting your application within a k8s cluster. Ingress are an interesting added feature of k8s v1.2 that need to mature, with a broad ecosystem of Load Balancers, to deliver a robust traffic routing solution for your datacenter.
 
 Manifest Management could be managed in version control but this is something new and needs to be handled with care.
 
@@ -114,7 +116,7 @@ Kubernetes is a great container orchestration solution but this technology doesn
 
 Don't make the mistake of overselling it, let the traditionnal IT stuff run untouched, but create a bridge between the different worlds. For example Service Discovery can be leveraged by an application running on k8s to get connection information to an Oracle Database, that's totally fine.
 
-If you think you can benefit from it, make sure to share and explain the reasons and promote it within your organisation. Sponsorship is key not to see your initiative dying after a while, adaption by a broad set of people is key for its survival. 
+If you think you can benefit from it, make sure to share and explain the reasons and promote it within your organisation. Sponsorship is key not to see your initiative dying after a while, adoption by a broad set of people is key for its survival. 
 
 The world of Kubernetes is moving fast, if you want to get regular updates, read the [KubeWeekly](https://kubeweekly.com/) newsletter.
 
@@ -150,11 +152,10 @@ Thanks for reading to that end and I wish you good luck with your containers !
 * [Kubernetes: Up and Running](http://shop.oreilly.com/product/0636920043874.do) - to be published in Aug'16
 
 ### Online Trainings
-* Kubernetes [illustrated guide](https://deis.com/blog/2016/kubernetes-illustrated-guide/)
+* [The illustrated Children's Guide to Kubernetes](https://deis.com/blog/2016/kubernetes-illustrated-guide/)
 * [Hello World Walkthrough](http://kubernetes.io/docs/hellonode/)
 * [Kubernetes Examples](https://github.com/kubernetes/kubernetes/tree/release-1.2/examples)
 * Free Udacity [Scalable Microservices with Kubernetes](https://www.udacity.com/course/scalable-microservices-with-kubernetes--ud615)
-* [Introduction to Kubernetes](Introduction to Kubernetes) - Kubecon 2015 slidedeck
 * Kubernetes [from the ground up](https://rocketeer.be/blog/2015/11/kubernetes-from-the-ground-up/)
 * About [etcd and Raft consensus](http://thenewstack.io/about-etcd-the-distributed-key-value-store-used-for-kubernetes-googles-cluster-container-manager/) Protocol
 * Raft protocol explained [step by step](http://thesecretlivesofdata.com/raft/)
@@ -172,6 +173,5 @@ Thanks for reading to that end and I wish you good luck with your containers !
 * [Docker and Kubernetes Bootcamp by Mirantis](https://training.mirantis.com/docker-kubernetes-bootcamp) - august 9-10, 2016
 * [Kubecon](http://events.linuxfoundation.org/events/kubecon) - november 8-9, 2016
 
+[k8s-logo]: /images/posts/k8s-logo.png
 [k8s-arch]: /images/posts/k8s-arch.png
-[k8s-]: /images/posts/k8s-xxx.png
-[k8s-]: /images/posts/k8s-xxx.png
