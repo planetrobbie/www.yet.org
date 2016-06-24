@@ -51,8 +51,13 @@ module PostHelper
   	if ENV['NANOC_ENV'] == 'production'
   		sorted_articles.select{|a| a[:published] }
   	else
-  		sorted_articles
+  		sorted_articles[0, 9]
   	end
+  end  
+ 
+  # Apart from the top 10, all archived articles are rendered below 
+  def blog_articles_archived
+  	sorted_articles.drop(9)
   end  
   
   def get_post_start(post)
