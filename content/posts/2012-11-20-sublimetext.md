@@ -11,7 +11,7 @@ This cheatsheet is based on the [Tuts+ online training](https://tutsplus.com/cou
 
 <!-- more -->
 
-## Installation on Ubuntu or Elementary OS
+### Installation on Ubuntu or Elementary OS
 
 Sublime Text 3 is in the works, still in [beta](http://www.sublimetext.com/3). In the meantime you can install version 2.0.2, from a terminal:
 
@@ -21,7 +21,7 @@ Sublime Text 3 is in the works, still in [beta](http://www.sublimetext.com/3). I
 
 But if you prefer you can download `Sublime-Text2.0.2-x64.tar.bz2` from *Sublime Text* [official site](http://www.sublimetext.com/2), Windows or OSX binaries are also there.
 
-## Killer features ##
+### Killer features ##
 
 * `Crtl + Shift + p` Command Palette to limit mouse interaction
 * `Crtl + D` Multiple Cursors
@@ -30,9 +30,9 @@ But if you prefer you can download `Sublime-Text2.0.2-x64.tar.bz2` from *Sublime
 * Become the cool kids code editor, massive documentation.
 * Plugin community incredibility vibrant, package control allow you to install them in seconds.
 
-## Howto
+### Howto
 
-### Shortcuts
+#### Shortcuts
 
 |**Most used**||
 |:-|:-|
@@ -60,7 +60,7 @@ But if you prefer you can download `Sublime-Text2.0.2-x64.tar.bz2` from *Sublime
 |`Crtl + Return`|Return like if you were at end of line|
 |`Crtl + /`|Comment line|
 
-### Rails tips & tricks
+#### Rails tips & tricks
 
 Install [*ERB Insert and Toggle Commands*](http://github.com/eddorre/SublimeERB) using *Package Control*, it gives you easy access to ERb tags, you just need to add the following to your user key bindings after installation to cycle thru Erb Tags with a simple key press:
 	
@@ -72,7 +72,7 @@ Install [*RubyTest*](https://github.com/maltize/sublime-text-2-ruby-tests) to ru
 
 See [*Michael Hartl*](http://ruby.railstutorial.org/) docs [on *GitHub*](https://github.com/mhartl/rails_tutorial_sublime_text) for more information.
 
-### Package Control ##
+#### Package Control ##
 
 Sublime Package Control is a package manager to discover, install, update and remove packages for Sublime Text 2. It features an automatic upgrader and supports GitHub, BitBucket and a full channel/repository system. To install it follow this procedure :
 
@@ -96,9 +96,9 @@ Note: If you type `install` in the Command Palet, you can easily install new pac
 
 If Package Control install fails silently, just remove the `Package settings > Package control: user` repositories you've configured.
 
-## Packages ##
+### Packages ##
 
-### PlainTasks ###
+#### PlainTasks ###
 This package offers a great way to manage your tasks as plain text files.
 
 |Shortcuts||
@@ -123,17 +123,17 @@ If you use [*DropBox*](https://www.dropbox.com) and [*TaskPaper*](http://www.hog
 
 Following [Patch](https://github.com/aziz/PlainTasks/pull/25/files) applied, for full TaskPaper compatibility.
 
-### FindKeyConflicts ###
+#### FindKeyConflicts ###
 
 Sometimes you press a key and the result surprise you, it's maybe due to a binding conflict. The last settings always preval. To check for that you can use [FindKeyConflicts](https://github.com/skuroda/FindKeyConflicts) Package.
 
-### Chef ###
+#### Chef ###
 
 If you are like me and are interested in *[Chef](http://www.getchef.com)*, a configuration management framework. You can install the [Chef package](https://sublime.wbond.net/packages/Chef) that will add autocompletion for common Chef idioms.
 
-## Customization ##
+### Customization ##
 
-### My favorite color schemes for MultiMarkdown ###
+#### My favorite color schemes for MultiMarkdown ###
 
 * *Twilight* : white text, brown titles, yellow bullets
 * *Sunburst* : big brown line for Headings
@@ -141,13 +141,13 @@ If you are like me and are interested in *[Chef](http://www.getchef.com)*, a con
 
 Note : Solarized Dark and Light are the most popular ones following scientist studies that consider the best lighting for the night and the one the day.
 
-## Keyboard troubleshooting ##
+### Keyboard troubleshooting ##
 
 Running Sublime Text 2 under VMware Fusion can sometimes be troublesome when it comes to Key bindings. To see what keys sublime gets from the OS, open the Python console from the `View > Console` menu and type
 
 	sublime.log_input(True)
 
-## Links ##
+### Links ##
 
 * [Official site](https://www.sublimetext.com/)
 * [Cheatsheet](http://cheat.errtheblog.com/s/subl)
