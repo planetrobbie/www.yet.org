@@ -63,7 +63,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 .doctype { color:#34b }
 .done { text-decoration: line-through; color: gray }
 .entity { color:#800; font-weight:bold }
-.error { color:#F00; background-color:#FAA }
+.error { color:#000; background-color:#f8f8f8 }
 .escape  { color:#666 }
 .exception { color:#C00; font-weight:bold }
 .float { color:#60E }
@@ -79,9 +79,9 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 .integer  { color:#00D }
 .imaginary { color:#f00 }
 .important { color:#D00 }
-.key { color: #606 }
+.key { color: #7f4500 }
 .key .char { color: #60f }
-.key .delimiter { color: #404 }
+.key .delimiter { color: #bf6900 }
 .keyword { color:#080; font-weight:bold }
 .label { color:#970; font-weight:bold }
 .local-variable { color:#950 }
@@ -104,10 +104,10 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 .shell { background-color:hsla(120,100%,50%,0.06); }
 .shell .content { color:#2B2 }
 .shell .delimiter { color:#161 }
-.string { background-color:hsla(0,100%,50%,0.05); }
+.string { background-color:#f8f8f8; }
 .string .char { color: #b0b }
-.string .content { color: #D20 }
-.string .delimiter { color: #710 }
+.string .content { color: #cb6f00}
+.string .delimiter { color: #bf6900 }
 .string .modifier { color: #E40 }
 .symbol { color:#A60 }
 .symbol .content { color:#A60 }
