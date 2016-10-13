@@ -10,19 +10,19 @@ Notes following up a webinar with *Matt Ray* from *[Opscode](http://www.opscode.
 
 <!-- more -->
 
-## Presenters
+### Presenters
 * Matt Ray - Senior Technical Evangelist @ [Opscode](http://www.opscode.com)
 * Carl Perry - Cloud Architect @ [DreamHost](http://www.dreamhost.com)
 * 42 slides should be available on the [mailing list](http://groups.google.com/group/opscode-chef-openstack) Chef for OpenStack soon
 
-## OpenStack Mission Statement
+### OpenStack Mission Statement
 * Apache 2 license
 * provides all the feature to run Private or Public Cloud regardless of size
 * massively scalable
 * compatibility with Amazon or other clouds
 * HP CLoud, RackSpace are using it but let's talk about DreamHost today
 
-## Why OpenStack
+### Why OpenStack
 * Control: Open source, no vendor lock in. (Apache 2 license)
 * Flexibility: Modular design integrates legacy and 3rd party technology
 * Emerging Industry Standard: more then 180 technology leaders back it and major cloud built on it 
@@ -39,31 +39,31 @@ Notes following up a webinar with *Matt Ray* from *[Opscode](http://www.opscode.
 	* Hyper-V
 	* and more
 	
-### Cinder (used to be called nova-volume)
+#### Cinder (used to be called nova-volume)
 * Block storage for the VM
 * similar to EBS from Amazon
 * drivers for Nexenta, NetApp, ...
 
-### Quantum
+#### Quantum
 * new project released with Folsom
 * SDN technology
 * sits on the network layer handles management and configuration of the VM networking
 * DreamHost use Nicira
 
-### Glance
+#### Glance
 * Image Registry
 * Source of the VMs that runs under Nova
 
-### Keystone
+#### Keystone
 * Common authentication layer
 * check for crendentials and provides token that are passed around
 * could be token-based, AWS, LDAP or other forms
 
-### Swift
+#### Swift
 * Original Rackspace Cloud Files object store that came from RackSpace
 * DreamHost use [Ceph](http://www.inktank.com) instead
 
-### Horizon
+#### Horizon
 * self-service role-based web interface for users and administrators
 * provision cloud based resources
 
@@ -88,14 +88,14 @@ Notes following up a webinar with *Matt Ray* from *[Opscode](http://www.opscode.
 
 ![][DreamObjects]  
 
-#### DreamCompute
+### DreamCompute
 * KVM used
 * Ceph for all the storage
 * frontend storage network isn't exposed to customers
 
 ![][DreamCompute]
 
-### Chef manages the overall infrastructure
+#### Chef manages the overall infrastructure
 * Automation platform
 * to define and build infrastructure
 * a lot of complexity of applications configuration are abstracted
@@ -234,7 +234,7 @@ Notes following up a webinar with *Matt Ray* from *[Opscode](http://www.opscode.
 * 3x Replication, Single Volume per Disk
 
 
-#### Chef for OpenStack Links
+### Chef for OpenStack Links
 * [Documentation](http://15.185.230.54/)
 * [Documentation repository](http://github.com/mattray/openstack-chef-docs) based on RST+Sphinx
 * [OpenStack Chef Repository: Roles, environments and data bags](http://github.com/opscode/openstack-chef-repo)
