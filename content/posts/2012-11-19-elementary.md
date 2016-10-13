@@ -15,9 +15,9 @@ Current [Luna Beta 1](http://elementaryos.org/journal/luna-beta-1-released) vers
 
 Let's review all the components of this sleak OS.
 
-## Major Components
+### Major Components
 
-### Window Manager - [Gala](https://launchpad.net/gala) ###
+#### Window Manager - [Gala](https://launchpad.net/gala) ###
 
 [Gala](http://elementaryos.org/journal/meet-gala-window-manager) is built on *LibMutter* which is the library used by *Mutter* the *Gnome3* Window Manager. Both *Mutter* and *Gala* uses *Clutter* which does its rendering using *OpenGL* or *OpenGL ES* to offer a light and smoothly-animated experience in addition to support for more complex decoration theming. Power users will love the new workspace management features as well.
 
@@ -29,25 +29,25 @@ When using `alt+TAB` only the selected window will be displayed, the Dock will d
 
 Grid-based window tiling is inherited from *LibMutter*
 
-### Desktop environment and shell - Pantheon ###
+#### Desktop environment and shell - Pantheon ###
 
 Consists of the greeter, panel, app launcher, dock, window manager, settings app, and theme.
 
 Pantheon Greeter (login screen), is now built on [LightDM](http://www.freedesktop.org/wiki/Software/LightDM). It features smooth graphics and animation with Clutter, displays the time and date with beautiful typography, and has built-in accessibility.
 
-### Application launcher - [SlingShot](https://launchpad.net/slingshot) ###
+#### Application launcher - [SlingShot](https://launchpad.net/slingshot) ###
 
 ![][SlingShot]
 
 App launcher, displays an optimal 3x5 paged grid of app icons built for speed and utilizes Granite which ensures consistency with the rest of the system.
 
-### Top panel - [WingPanel](https://launchpad.net/wingpanel) ###
+#### Top panel - [WingPanel](https://launchpad.net/wingpanel) ###
 
 ![][WingPanel]
 
 *WingPanel* is a space-saving top panel with a refined look providing easy indicators access; clicking an indicator reveals a pleasing popover with the relevant items, and the Applications item now opens Slingshot instead of a menu.
 
-### Dock - [Plank](https://launchpad.net/pantheon-dock) ###
+#### Dock - [Plank](https://launchpad.net/pantheon-dock) ###
 
 ![][Plank]
 
@@ -57,7 +57,7 @@ Plank is one of the only part of Elementary to be developed in Vala by 3rd party
 
 If you need to change the Dock Position, change the value of `Position=` in the `~/.config/plank/dock1/settings` file, put instead: `0/1/2/3` respectively for `left/up/righ/bottom`.
 
-### Settings - [Switchboard](https://launchpad.net/switchboard) ###
+#### Settings - [Switchboard](https://launchpad.net/switchboard) ###
 
 ![][Switchboard]
 
@@ -65,13 +65,13 @@ Unified system configuration, supports a slick open standard for settings panes,
 
 *Switchboard* is divided in four categories : Network, Hardware, Personal, System. Application level settings won't be available here.
 
-## Elementary Applications
+### Elementary Applications
 
-### Terminal - [Pantheon Terminal](https://launchpad.net/pantheon-terminal) ###
+#### Terminal - [Pantheon Terminal](https://launchpad.net/pantheon-terminal) ###
 
 A lightweight and simple terminal emulator. It makes use of Granite, meaning it has excellent and consistent tab management.
 
-### Editor - [Scratch](https://launchpad.net/scratch) ###
+#### Editor - [Scratch](https://launchpad.net/scratch) ###
 
 ![][Scratch]
 
@@ -90,13 +90,13 @@ Additional features include:
 * strong integration with Granite framework by elementary-team
 * tab and split documents system
 
-### Web Browser - [Midori](http://twotoasts.de/index.php/midori/) ###
+#### Web Browser - [Midori](http://twotoasts.de/index.php/midori/) ###
 
 ![][Midori]
 
 Newer and much faster version of [WebKit](http://www.webkit.org/), providing an all-around better experience and supporting the latest in CSS3 and HTML5. A new Dynamic Notebook has been integrated from Granite, giving Midori a beautiful and consistent tabbed browsing experience. Midori also makes use of Popovers in its bookmarking interface. Lastly, Midori has received many important compatibility and security updates.
 
-### Mail Client - [Geary](http://worldofgnome.org/geary-mail-client-4-gnome-version-0-2-released/) ###
+#### Mail Client - [Geary](http://worldofgnome.org/geary-mail-client-4-gnome-version-0-2-released/) ###
 
 ![][Geary]
 
@@ -106,29 +106,29 @@ Geary doesn’t store the data locally (keeps some caching though) but syncs wit
 
 Currently lacking features of v0.2: Searching, Multiple accounts, Offline mode.
 
-### Calendar - [Maya](https://launchpad.net/maya) ###
+#### Calendar - [Maya](https://launchpad.net/maya) ###
 
 ![][Maya]
 
 *Maya*, a new app in Luna, is a simple desktop calendar. With it you can create, view, and manage events to organize your agenda.
 
-### Contact - [Dexter](https://launchpad.net/dexter-contacts) ###
+#### Contact - [Dexter](https://launchpad.net/dexter-contacts) ###
 
 ![][Dexter]
 
 Dexter is a contact management application for Pantheon
 
-### Music player - [Noise](https://launchpad.net/noise) ###
+#### Music player - [Noise](https://launchpad.net/noise) ###
 
 ![][Noise]
 
 Noise is a brand new music player, it combines a beautifully simple interface with a powerfully fast backend to let you get right at your music. It makes excellent use of Granite’s ThinPane and DecoratedWindow widgets, ensuring consistency with the rest of the desktop.
 
-## Developement Framework - [Granite](https://launchpad.net/granite) ##
+### Developement Framework - [Granite](https://launchpad.net/granite) ##
 
 *Granite* is an extension of GTK. Among other things, it provides the commonly-used widgets such as modeswitchers, welcome screens, AppMenus, search bars, and more found in elementary apps.
 
-## Elementary Keyboards Shortcuts and special keys ##
+### Elementary Keyboards Shortcuts and special keys ##
 |||
 |:-|:-:|
 |`⌘ + Left/Right`|Switch Workspace|
@@ -148,7 +148,7 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 |`Crtl + alt + tab`|cycle through panels|
 |`AltGr + n + space`|~|
 
-## Customization ##
+### Customization ##
 
 *Elementary* is great, but let's make it even better with the following customization
 
@@ -171,7 +171,7 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 * sudo apt-get install sshfs; usermod -a -G fuser brauns; sshfs user@<ip>:/remote/path/ /mnt/local/path
 * pidgin installed (IRC client)
 
-### AltGr inversion trick ##
+#### AltGr inversion trick ##
 1. Linux VM need to be configured with Mac Profile Keyboard in settings 
 2. To switch both Alt keys (from [blog](http://instant-thinking.de/2009/01/17/ubuntu-linux-unter-vmware-fusion-sonderzeichen-auf-der-mac-tastatur/))
 3. Edit ~/.Xmodmap
@@ -190,7 +190,7 @@ Noise is a brand new music player, it combines a beautifully simple interface wi
 
 Note: to display keycode of touch pressed on the keyboard, you can launch from a terminal the `showkey` application.
 
-### Adding Sublime Text 2 Icon & Launcher ##
+#### Adding Sublime Text 2 Icon & Launcher ##
 	
 1. Copy Sublime Text 2 classic [Icon](http://c758482.r82.cf2.rackcdn.com/sublime_text_icon_2181.png) or this newer [one](http://i.imgur.com/xjZjS.png)
 
@@ -212,9 +212,9 @@ Note: to display keycode of touch pressed on the keyboard, you can launch from a
 	>StartupNotify=true  
 	>Terminal=false  
 
-### Solarized colors
+#### Solarized colors
 
-#### Dircolors
+##### Dircolors
 
 To install Solarized color theme for LS_COLORS:
 
@@ -224,7 +224,7 @@ To install Solarized color theme for LS_COLORS:
 
 To make it persistent you can add the above line to your `~/.zshrc`
 
-#### Gnome Terminal
+##### Gnome Terminal
 
 To setup Solarized for GNOME Terminal:
 
@@ -235,7 +235,7 @@ To setup Solarized for GNOME Terminal:
 	./set_dark.sh
 	./set_light.sh
 
-## Conclusion
+### Conclusion
 
 I've been using Elementary for few days now, I find it even better then Mac OSX. I'm now using it fulltime now :). So I encourage you to test it, You'll find the iso on their [site](http://elementaryos.org/journal/luna-beta-1-released).
 
