@@ -20,12 +20,12 @@ In this webinar we will learn how the integrated Opscode Chef and Electric Cloud
 
 Only through an integrated automation of infrastructure, application and release process, can IT organizations deliver applications quickly, with minimal errors and complete transparency.
 
-## Presenters
+### Presenters
 
 * *George Moberly* - VP Products at *OPScode*
 * *Kalyan Ramanathan* - VP Marketing at *Electric Cloud*
 
-## Introduction
+### Introduction
 
 *Devops* is a way to deliver application faster with better quality, let's see how we can manage the overall infrastructure using this methodology.
 
@@ -54,11 +54,11 @@ Done again and again, throughout the release process. So how to manage it ?. Wha
 
 The integration between *Electric Cloud* and *Opscode Chef* provides a global solution to automate your infrastructure, with application deployment as well as the release process with Electric Cloud solution.
 
-## *Opscode*
+### *Opscode*
 
 ![][electric_cloud_chef-01]
 
-### What is *Chef* ?
+#### What is *Chef* ?
 
 Opscode founded september 2008, $33m from *DFJ, Battery, Ignition* based in Seattle, WA. 75+ Employees.
 
@@ -72,7 +72,7 @@ Chef enables people to easily build & manage complex & dynamic application infra
 * Programmatically provision and configure
 * Reconstruct business from code repository, data backup and bare metal resources.
 
-### High level overview of *Opscode Chef*
+#### High level overview of *Opscode Chef*
 
 ![][electric_cloud_chef-02]
 
@@ -85,7 +85,7 @@ There is a huge library of *Cookbooks* available at [Opscode community](http://c
 
 ![][electric_cloud_chef-03]
 
-### Electric Cloud overview
+#### Electric Cloud overview
 
 Silicon based started since 2005, 100+ employees. Strong suite of customers.
 
@@ -112,7 +112,7 @@ The combinaison of all the parts makes DevOps possible.
 
 ![][electric_cloud_chef-04]
 
-## Demo
+### Demo
 
 ![][electric_cloud_chef-07]
 
@@ -161,7 +161,7 @@ The application is now updated with Kangaroos.
 
 So you've seen the ability to do deployment in a really automated way, for the infrastructure and the code. You'll get trend data about how those deployment are performing. It provides full visibility about the deployment pipeline.
 
-## Joint Solution Benefits
+### Joint Solution Benefits
 
 * Consistent full stack deployments
 * Orchestrated complex multi-tier deployments
@@ -169,48 +169,48 @@ So you've seen the ability to do deployment in a really automated way, for the i
 * End to end application auditability
 * Application & environment centric reporting.
 
-## Q&A
+### Q&A
 
-### Operating system limitation with Chef ?
+#### Operating system limitation with Chef ?
 
 Support for the agent on pretty much any OS: Solaris, Windows, Linux,... Customers in production doing windows management with Opscode Chef.
 
-### How many recipes comes out of the box with Chef ?
+#### How many recipes comes out of the box with Chef ?
 
 All the content is Apache 2.0 licensed, you are free to keep your changes. It is close to 900 cookbooks already available and indexed, some additional content are available but not currently indexed by Opscode.
 
-### How Electric Cloud manage testing and packaging
+#### How Electric Cloud manage testing and packaging
 
 *Electric Commander* manages the release process, over 200 integration with many of the tools : SCM, Build systems, Test systems, ... You can pretty much take any integration plugin to adapt to your needs.
 
-### Electric Cloud integrates with EC2, VMware so why to I need Chef ?
+#### Electric Cloud integrates with EC2, VMware so why to I need Chef ?
 
 It is a basic integration, Chef represents a layer of sophistication, Chef is really good at promoting infrastructure as code, to consistently configure the infrastructure. There is a lot of value there to insure the infrastructure conigurration is done well.
 
-### Hardware OS, DB ? What do they support ?
+#### Hardware OS, DB ? What do they support ?
 
 Chef is pre-built for many things but not 100% coverage. Basically if you can automate something with an API you can turn into a cookbook. A lot node.js, rails, emerging technologies are pretty well supported, maybe less support for legacy stuff.
 
 Electric Cloud WebSphere, WebLogic, Oracle etc, ... no complete coverage, a lot of components constantly added.
 
-### Microsoft ?
+#### Microsoft ?
 
 Partnership with *Azure* to bring Linux and *IaaS* capabilities to Azure. There is a Cloud plugin for Azure. Electric Cloud is currently engaged in expanding that and identifying new use cases.
 
-### About Nexus and Artifact repository
+#### About Nexus and Artifact repository
 
 Artifact repositoty like Nexus can interact with Electric Cloud.
 
-### Differences between Chef Open Source and paid version
+#### Differences between Chef Open Source and paid version
 
 The messaging will be clarified. The content will be published soon on Opscode site. Ask info@opscode.com if you need it right now.
 
-## Contacts
+### Contacts
 
 * *[Opscode](http://www.opscode.com)* info@opscode.com, twitter: @opscode
 * *[Electric Cloud](http://www.electric-cloud.com)* chef@electric-cloud.com, twitter: @electric-cloud.com
 
-## Links
+### Links
 
 * Webinar [recording](http://www.electric-cloud.com/resources/webinars.php?commid=59781)
 
