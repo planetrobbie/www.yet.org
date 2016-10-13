@@ -6,7 +6,7 @@ published: true
 tags: ['cheatsheet', 'markup']
 ---
 
-[MMD](http://fletcherpenney.net/multimarkdown/) is an extension of a well known markup language extending Markdown.
+***[MMD](http://fletcherpenney.net/multimarkdown/)*** is an extension of a well known markup language extending Markdown.
 
 <!-- more -->
 
@@ -295,13 +295,14 @@ to [configure](http://www.mediawiki.org/wiki/Extension:AlternateSyntaxParser) di
 
 ## Links
 
-1. [Official](http://fletcherpenney.net/multimarkdown) web site
-2. [documentation](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md)
-3. <http://markedapp.com> - show you the final output of your document as you work.
-4. [Byword](http://bywordapp.com/) - IOS, OSX beautiful MultiMarkdown editor
-5. [TextMate](http://macromates.com) - great OSX editor now [Open Sourced](https://github.com/textmate/textmate) 
-6. <http://markable.in/> - live online rendering of Markdown text
-7. [Pandoc](http://johnmacfarlane.net/pandoc) - great to convert between Markup languages from Markdown, reStructuredText, textile, html, DocBook, or LaTeX to html, Word, OpenOffice, Mediawiki, epub, DocBook, pdf, RST, ....
-8. Other Markdown syntaxes: [GitHub flavored (GFM)](http://github.github.com/github-flavored-markdown), [Markdown Extra](http://michelf.ca/projects/php-markdown/extra/), [Maruku](http://maruku.rubyforge.org/maruku.html), [kramdown](http://kramdown.rubyforge.org/), [Pandoc Markdown](http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown)
-9. [Wikipedia list](http://en.wikipedia.org/wiki/List_of_Markdown_implementations) of implementation
-10. [Ruby PEG MultiMarkdown](https://github.com/djungelvral/rpeg-multimarkdown) a MultiMarkdown module for ruby forked from rpeg-markdown                                                        	
+* [Official](http://fletcherpenney.net/multimarkdown) web site
+* [documentation](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md)
+* [Typora](http://www.typora.io/) - minimal Wysiwyg markdown editor for Linux, Mac amd windows
+* <http://markedapp.com> - show you the final output of your document as you work.
+* [Byword](http://bywordapp.com/) - IOS, OSX beautiful MultiMarkdown editor
+* [TextMate](http://macromates.com) - great OSX editor now [Open Sourced](https://github.com/textmate/textmate) 
+* <http://markable.in/> - live online rendering of Markdown text
+* [Pandoc](http://johnmacfarlane.net/pandoc) - great to convert between Markup languages from Markdown, reStructuredText, textile, html, DocBook, or LaTeX to html, Word, OpenOffice, Mediawiki, epub, DocBook, pdf, RST, ....
+* Other Markdown syntaxes: [GitHub flavored (GFM)](http://github.github.com/github-flavored-markdown), [Markdown Extra](http://michelf.ca/projects/php-markdown/extra/), [Maruku](http://maruku.rubyforge.org/maruku.html), [kramdown](http://kramdown.rubyforge.org/), [Pandoc Markdown](http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown)
+* [Wikipedia list](http://en.wikipedia.org/wiki/List_of_Markdown_implementations) of implementation
+* [Ruby PEG MultiMarkdown](https://github.com/djungelvral/rpeg-multimarkdown) a MultiMarkdown module for ruby forked from rpeg-markdown                                                        	
