@@ -63,7 +63,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 .doctype { color:#34b }
 .done { text-decoration: line-through; color: gray }
 .entity { color:#800; font-weight:bold }
-.error { color:#000; background-color:#f8f8f8 }
+.error { color:#000; background-color:#dadada }
 .escape  { color:#666 }
 .exception { color:#C00; font-weight:bold }
 .float { color:#60E }
@@ -104,7 +104,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 .shell { background-color:hsla(120,100%,50%,0.06); }
 .shell .content { color:#2B2 }
 .shell .delimiter { color:#161 }
-.string { background-color:#f8f8f8; }
+.string { background-color:#dadada; }
 .string .char { color: #b0b }
 .string .content { color: #cb6f00}
 .string .delimiter { color: #bf6900 }

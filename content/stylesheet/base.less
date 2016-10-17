@@ -3,7 +3,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline; }
 article, aside, details, figcaption, footer, header, hgroup, menu, nav, figure, section {
   display: block; }
@@ -46,16 +45,23 @@ table {
       margin-bottom: 0; } 
 
 h1, h2, h3, h4, h5, h6 {
-  color: #181818;
-  font-family: "Georgia", "Times New Roman", Helvetica, Arial, sans-serif;
-  font-weight: normal; }
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
-h1 { font-size: 36px; line-height: 40px; margin-bottom: 10px;}
-h2 { font-size: 22px; line-height: 34px; margin-bottom: 4px; }
-h3 { font-size: 17px; line-height: 30px; margin-bottom: 2px; }
-h4 { font-size: 14px; line-height: 24px; }
-h5 { font-size: 9px; line-height: 21px; }
-h6 { font-size: 6px; line-height: 12px; }
+  font-weight: bold;
+}
+h1 {
+  font-size: 1.875em;
+  line-height: 1.6em;
+}
+h2,h3 { 
+  font-size: 1.3125em
+;  line-height: 34px;
+  margin-bottom: 4px;
+}
+h4 {
+  font-style: italic;
+  font-size: 1.125em;
+  margin-top: 0.4em;
+}
+h5, h6 { font-size: 1em; }
 .subheader { color: #777; }
 
 p { margin: 0 0 8px 0; }
