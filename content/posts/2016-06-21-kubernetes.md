@@ -145,7 +145,7 @@ Thanks for reading to that end and I wish you good luck with your containers !
 * [Official blog](http://blog.kubernetes.io/)
 * [KubeWeekly](https://kubeweekly.com/)
 * [CoreKube](https://corekube.com/posts/)
-* [Kunernetes networking 101](http://www.dasblinkenlichten.com/kubernetes-101-networking/) - internal communication
+* [Kubernetes networking 101](http://www.dasblinkenlichten.com/kubernetes-101-networking/) - internal communication
 * [Kubernetes networking 101](http://www.dasblinkenlichten.com/kubernetes-101-external-access-into-the-cluster) - external access to the cluster
 
 ### Books
