@@ -6,7 +6,7 @@ published: true
 tags: ['salt', 'howto', 'devops']
 ---
 
-Always reinventing the wheel doesn't pay off most of the time, so telling [Salt](/2016/09/salt/) what to do by creating [Salt States](https://docs.saltstack.com/en/latest/ref/states/all/salt.states.cmd.html) again and again to install application components isn't really efficient. Instead [Salt Formulas](https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html) brings convention and a bit of magic, and offer reusable bundles which package altogether all the necessary piece to automate a specific task, like deploying [etcd](https://coreos.com/etcd/), a distributed key value store cluster, which we will take as an example in this article.
+Always reinventing the wheel doesn't pay off most of the time, so telling *[Salt](/2016/09/salt/)* what to do by creating *[Salt States](https://docs.saltstack.com/en/latest/ref/states/all/salt.states.cmd.html)* again and again to install application components isn't really efficient. Instead *[Salt Formulas](https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html)* brings convention and a bit of magic, and offer reusable bundles which package altogether all the necessary piece to automate a specific task, like deploying *[etcd](https://coreos.com/etcd/)*, a distributed key value store cluster, which we will take as an example in this article.
 
 <!-- more -->
 

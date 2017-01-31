@@ -1,7 +1,7 @@
-include Nanoc3::Helpers::Blogging
-include Nanoc3::Helpers::Tagging
-include Nanoc3::Helpers::Rendering
-include Nanoc3::Helpers::LinkTo
+include Nanoc::Helpers::Blogging
+include Nanoc::Helpers::Tagging
+include Nanoc::Helpers::Rendering
+include Nanoc::Helpers::LinkTo
 
 module NavHelper
 
@@ -10,12 +10,7 @@ module NavHelper
 
 		# nav rules
 		if 
-        (path == '/' and (ident == '/')) or
-        (path == '/tags' and ident.start_with? '/tags') or
-				(path == '/work' and (ident.start_with? '/portfolio' or ident.start_with? '/work')) or
-        (path == '/archives' and ident.start_with? '/archives') or
-				(path == '/about' and ident.start_with? '/about') or
-				(path == '/contact' and ident.start_with? '/contact')
+        (path == '/' and (ident == '/')) or path == '/tags' or path == '/work' or path == '/archives' or path == '/about' or path == '/contact'
 			clazz = "active " 
 		else
 			clazz = ' '
@@ -76,7 +71,7 @@ include PostHelper
 # Creates in-memory tag pages from partial: layouts/_tag_page.haml
 def create_tag_pages
   tag_set(items).each do |tag|
-    items << Nanoc3::Item.new(
+    @items.create(
       "= render('_tag_page', :tag => '#{tag}')",           # use locals to pass data
       { :title => "Category: #{tag}", :is_hidden => true}, # do not include in sitemap.xml
       "/tags/#{tag}/",                                     # identifier

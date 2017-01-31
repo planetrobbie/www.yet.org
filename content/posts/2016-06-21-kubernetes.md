@@ -8,7 +8,7 @@ tags: ['howto', 'containers', 'kubernetes']
 
 For years Google is driving its infrastructure using containers with a system named *Borg*, they are now sharing their expertise with an Open Source container cluster manager named *Kubernetes* (or helmsmen in ancient greek) abreviated k8s. Briefly said **Kubernetes is a framework for building distributed systems**.
 
-Release 1.0 went public in July 2015 and Google created at the same time, in partnership with the Linux Foundation, the [Cloud Native Computing Foundation (CNCF)](https://cncf.io/).
+Release 1.0 went public in July 2015 and Google created at the same time, in partnership with the Linux Foundation, the *[Cloud Native Computing Foundation (CNCF)](https://cncf.io/)*.
 
 If you want to know more, read on.
 
