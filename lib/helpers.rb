@@ -6,25 +6,30 @@ include Nanoc::Helpers::LinkTo
 module NavHelper
 
 	def nav_link(name, path, current)
-		ident = item.identifier
+		
+    ident = item.identifier.chop
 
-		# nav rules
-		if 
-        (path == '/' and (ident == '/')) or path == '/tags' or path == '/work' or path == '/archives' or path == '/about' or path == '/contact'
-			clazz = "active " 
-		else
-			clazz = ' '
-		end
-
+    # nav rules
+    if 
+        (path == '/' and (ident == '')) or
+        (path == '/tags' and ident.start_with? '/tags') or
+        (path == '/work' and (ident.start_with? '/portfolio' or ident.start_with? '/work')) or
+        (path == '/archives' and ident.start_with? '/archives') or
+        (path == '/about' and ident.start_with? '/about') or
+        (path == '/contact' and ident.start_with? '/contact')
+      clazz = "active " 
+    else
+      clazz = ' '
+    end
     if (name == 'Yet Emerging Technologies')
-      clazz += 'yet'
+    	clazz += 'yet'
     else
       clazz += name
     end
- 
 		"<li class='#{clazz}'><a href='#{path}'>#{name}</a></li>"
 	end
 end
+
 include NavHelper
 
 module PostHelper
