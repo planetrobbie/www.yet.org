@@ -1,5 +1,5 @@
 # The base URL for this site. This is required for tags links. 
-base_url: http://www.yet.org
+base_url: https://www.yet.org
 
 # A list of file extensions that nanoc will consider to be textual rather than
 # binary. If an item with an extension not in this list is found,  the file
