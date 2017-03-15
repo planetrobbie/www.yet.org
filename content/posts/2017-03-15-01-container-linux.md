@@ -234,7 +234,7 @@ To see the update happening
 
     # journalctl -fu update-engine
 
-This update mechanism is based on Google's open source [Omaha protocol](https://code.google.com/p/omaha/).
+This update mechanism is based on Google's open source [Omaha protocol](https://code.google.com/p/omaha/). This client/server update protocol is used to updates products like ChromeOS, Chrome Browser, Google Earth. *CoreOS* have [developed](https://github.com/coreos/go-omaha) Open Source bindings in Go.
 
 #### /usr/share/oem
 
@@ -260,9 +260,18 @@ Check components versions
     # rkt version
     # docker --version
 
-[Locksmith](https://github.com/coreos/locksmith) is a daemon used to set locks for controlling the [reboot strategy](https://coreos.com/os/docs/latest/update-strategies.html) (etcd-lock, reboot, best-effort, off) which is defined in `/etc/coreos/update.conf`. You can check its status
+[Locksmith](https://github.com/coreos/locksmith) is a daemon used to set locks for controlling the [reboot strategy](https://coreos.com/os/docs/latest/update-strategies.html) which is defined in `/etc/coreos/update.conf` as follows
+
+* `etcd-lock` - reboot only after taking a successful lock
+* `reboot` - reboot immediately without taking a lock
+* `best-effort` - if etcd is running, then use `etcd-lock` otherwise fall back to simple reboot
+* `off` - no reboot
+
+You can check its status
 
     # locksmithctl status
+
+Locksmith is backed by etcd and works in tandem with the update-engine. Simply said it's the thing that tells the system to reboot.
 
 #### Files
 
