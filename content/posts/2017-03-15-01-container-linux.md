@@ -6,8 +6,7 @@ published: true
 tags: ['containers', 'coreOS', 'linux']
 ---
 
-Evolution is drastic in IT, we now see applications running in containers, public clouds eating the world with self-service offerings. The world of computing has to adapt and provide a foundation for this constant innovation. This is exaclty what the *[CoreOS]()* team have been doing for almost four years. It all started with *CoreOS* a minimalistic Linux operating system which have recently been renamed Container Linux, which gives a quick overview of what it is built for. It's only purpose is to be a foundation layer to run your containerized and distributed cloud-native application. Having such a reduced footprint makes it way more secure, it was the driving force behind it. Also by reducing the adherence between your application and the infrastructure operating system, updates becomes way easier, so your environment will be kept secured. Container Linux offer a minimum set of binaries, mostly systemd, [etcd](https://coreos.com/etcd/docs/latest/), [rkt](/2017/03/rkt/) and [flannel](https://github.com/coreos/flannel) for networking. Anything else can run as containers on top of Container Linux.  
-
+Evolution is drastic in IT, we now see applications running in containers, public clouds eating the world with self-service offerings. The world of computing has to adapt and provide a foundation for this constant innovation. This is exaclty what the *[CoreOS](https://coreos.com/)* team have been doing for almost four years. It all started with *CoreOS* a minimalistic Linux operating system which have recently been renamed Container Linux, which gives a quick overview of what it is built for. It's only purpose is to be a foundation layer to run your containerized and distributed cloud-native application. Having such a reduced footprint makes it way more secure, it was the driving force behind it. Also by reducing the adherence between your application and the infrastructure operating system, updates becomes way easier, so your environment will be kept secured. Container Linux offer a minimum set of binaries, mostly systemd, [etcd](https://coreos.com/etcd/docs/latest/), [rkt](/2017/03/rkt/) and [flannel](https://github.com/coreos/flannel) for networking. Anything else can run as containers on top of Container Linux. 
 
 <!-- more -->
   
@@ -157,7 +156,7 @@ Look at the details on the [official documentation](https://coreos.com/os/docs/l
 
 #### OVH
 
-They also have available CoreOS stable available on their [public OpenStack cloud](https://www.ovh.com/us/public-cloud/instances/). Container Linux release is a bit old but due to the nice autoupdate feature, detailled later, you won't wait long enough before your OpenStack instance reboot in the latest stable version which is `1298.5.0` as of today, March 15, 2017.
+They also have available CoreOS stable available on their [public OpenStack cloud](https://www.ovh.com/us/public-cloud/instances/). Container Linux release is a bit old but due to the nice autoupdate feature, detailled later, you won't wait long enough before your OpenStack instance reboot in the latest stable version which is `1298.5.0` (Ladybug) as of today, March 15, 2017.
 
 Other public clouds, like Azure or DigitalOcean are also supported.
 
@@ -317,6 +316,10 @@ reload systemd configuration
 
     # sudo systemctl start update-engine.service
     # sudo systemctl restart update-engine.service
+
+restart networkd
+
+    # sudo systemctl restart systemd-networkd.service
 
 ### Conclusion
 
